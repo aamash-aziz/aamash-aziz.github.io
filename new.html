@@ -1,0 +1,1098 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aziz Group of Schools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+:root{--gold:#C9922A;--gold-light:#E8B84B;--navy:#0D1B3E;--navy-mid:#162447;--navy-light:#1E3460;--cream:#FAF6EE;--white:#FFFFFF;--text-dark:#0D1B3E;--text-mid:#3D4F6B;--text-light:#8A96A8;--shadow:0 20px 60px rgba(13,27,62,0.15);--shadow-hover:0 30px 80px rgba(13,27,62,0.25);}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;}
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(13,27,62,0.97);backdrop-filter:blur(12px);border-bottom:2px solid var(--gold);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:72px;}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+.nav-logo .emblem{width:46px;height:46px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:20px;color:var(--navy);box-shadow:0 0 20px rgba(201,146,42,0.4);}
+.nav-logo .logo-text{color:var(--white);}
+.nav-logo .logo-text strong{display:block;font-size:17px;font-weight:600;line-height:1;}
+.nav-logo .logo-text span{font-size:11px;color:var(--gold-light);letter-spacing:1px;text-transform:uppercase;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.85);text-decoration:none;font-size:14px;font-weight:500;letter-spacing:0.5px;transition:color 0.2s;padding-bottom:2px;border-bottom:2px solid transparent;}
+.nav-links a:hover{color:var(--gold-light);border-bottom-color:var(--gold-light);}
+.nav-admin-btn{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);border:none;padding:9px 20px;border-radius:6px;font-weight:600;font-size:13px;cursor:pointer;transition:all 0.2s;font-family:'Outfit',sans-serif;}
+.nav-admin-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,146,42,0.5);}
+.hero{min-height:100vh;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-mid) 50%,#0A2240 100%);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding-top:72px;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,146,42,0.12) 0%,transparent 70%),radial-gradient(circle at 10% 80%,rgba(201,146,42,0.08) 0%,transparent 50%);}
+.hero-pattern{position:absolute;inset:0;opacity:0.04;background-image:repeating-linear-gradient(45deg,var(--gold) 0px,var(--gold) 1px,transparent 1px,transparent 40px);}
+.hero-content{position:relative;z-index:1;max-width:800px;padding:0 20px;}
+.hero-badge{display:inline-block;padding:6px 18px;background:rgba(201,146,42,0.15);border:1px solid rgba(201,146,42,0.4);border-radius:30px;color:var(--gold-light);font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;animation:fadeUp 0.8s 0.1s both;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(38px,7vw,78px);font-weight:900;color:var(--white);line-height:1.1;animation:fadeUp 0.8s 0.2s both;}
+.hero h1 span{color:var(--gold-light);display:block;}
+.hero p{font-size:18px;color:rgba(255,255,255,0.7);margin:24px 0 40px;line-height:1.7;animation:fadeUp 0.8s 0.3s both;}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.8s 0.4s both;}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);padding:14px 32px;border:none;border-radius:8px;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.3s;box-shadow:0 8px 30px rgba(201,146,42,0.35);font-family:'Outfit',sans-serif;}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(201,146,42,0.5);}
+.btn-outline{border:2px solid rgba(255,255,255,0.4);color:var(--white);padding:14px 32px;border-radius:8px;font-weight:600;font-size:15px;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.3s;background:transparent;font-family:'Outfit',sans-serif;}
+.btn-outline:hover{border-color:var(--gold-light);color:var(--gold-light);}
+.hero-stats{display:flex;gap:48px;justify-content:center;margin-top:64px;animation:fadeUp 0.8s 0.5s both;}
+.stat{text-align:center;}
+.stat .num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold-light);}
+.stat .label{font-size:12px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px;}
+.scroll-indicator{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);animation:bounce 2s infinite;}
+.scroll-indicator svg{width:24px;height:24px;stroke:rgba(255,255,255,0.4);}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+section{padding:90px 5%;}
+.section-header{text-align:center;margin-bottom:60px;}
+.section-tag{display:inline-block;padding:5px 16px;background:rgba(201,146,42,0.1);border:1px solid rgba(201,146,42,0.3);border-radius:30px;color:var(--gold);font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-weight:500;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,46px);font-weight:700;color:var(--navy);line-height:1.2;}
+.section-header p{font-size:17px;color:var(--text-mid);margin-top:14px;max-width:580px;margin-left:auto;margin-right:auto;}
+.schools-section{background:var(--white);}
+.schools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;max-width:1200px;margin:0 auto;}
+.school-card{background:var(--white);border:1px solid rgba(13,27,62,0.08);border-radius:16px;overflow:hidden;cursor:pointer;text-decoration:none;display:block;transition:all 0.35s cubic-bezier(0.175,0.885,0.32,1.275);box-shadow:0 4px 20px rgba(13,27,62,0.06);position:relative;}
+.school-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover);border-color:var(--gold);}
+.school-card-img{height:180px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.card-pattern{position:absolute;inset:0;opacity:0.08;background-image:repeating-linear-gradient(45deg,currentColor 0px,currentColor 1px,transparent 1px,transparent 20px);}
+.school-icon-big{width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:32px;position:relative;z-index:1;border:2px solid rgba(255,255,255,0.3);}
+.school-card-body{padding:24px;}
+.school-card-body h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.school-card-body p{font-size:14px;color:var(--text-mid);line-height:1.6;margin-bottom:16px;}
+.school-card-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:5px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;}
+.school-card-arrow{position:absolute;top:20px;right:20px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;opacity:0;transition:all 0.3s;}
+.school-card:hover .school-card-arrow{opacity:1;transform:translateX(3px);}
+.school-card-arrow svg{width:16px;height:16px;stroke:white;}
+.card-navy .school-card-img{background:linear-gradient(135deg,var(--navy),var(--navy-light));}
+.card-green .school-card-img{background:linear-gradient(135deg,#1B6E4F,#2D8C6A);}
+.card-gold .school-card-img{background:linear-gradient(135deg,#8B5E00,var(--gold));}
+.card-teal .school-card-img{background:linear-gradient(135deg,#1A5276,#1F7EA3);}
+.card-navy .school-card-tag{background:rgba(13,27,62,0.08);color:var(--navy);}
+.card-green .school-card-tag{background:rgba(45,140,106,0.1);color:#1B6E4F;}
+.card-gold .school-card-tag{background:rgba(201,146,42,0.1);color:#8B5E00;}
+.card-teal .school-card-tag{background:rgba(31,126,163,0.1);color:#1A5276;}
+/* STAFF */
+.staff-section{background:var(--white);}
+.director-wrap{max-width:900px;margin:0 auto 60px;}
+.director-card{background:linear-gradient(135deg,var(--navy),var(--navy-light));border-radius:24px;padding:48px;display:flex;gap:40px;align-items:center;box-shadow:0 20px 60px rgba(13,27,62,0.25);border:1px solid rgba(201,146,42,0.3);position:relative;overflow:hidden;}
+.director-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,146,42,0.15) 0%,transparent 70%);border-radius:50%;}
+.director-photo{width:140px;height:140px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:48px;border:4px solid rgba(201,146,42,0.5);box-shadow:0 8px 30px rgba(0,0,0,0.3);overflow:hidden;position:relative;}
+.director-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;inset:0;}
+.director-info{flex:1;}
+.director-badge{display:inline-block;padding:4px 14px;background:rgba(201,146,42,0.2);border:1px solid rgba(201,146,42,0.4);border-radius:20px;color:var(--gold-light);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;font-weight:600;}
+.director-info h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--white);margin-bottom:6px;}
+.director-info .dir-edu{font-size:14px;color:var(--gold-light);margin-bottom:12px;font-weight:500;}
+.director-info p{font-size:15px;color:rgba(255,255,255,0.75);line-height:1.7;}
+.teachers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:24px;max-width:1200px;margin:0 auto;}
+.teacher-card{background:var(--cream);border-radius:16px;padding:28px 20px;text-align:center;border:1px solid rgba(13,27,62,0.08);transition:all 0.3s;box-shadow:0 4px 16px rgba(13,27,62,0.05);}
+.teacher-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--gold);}
+.teacher-photo{width:90px;height:90px;border-radius:50%;margin:0 auto 16px;background:linear-gradient(135deg,var(--navy),var(--navy-light));display:flex;align-items:center;justify-content:center;font-size:30px;overflow:hidden;border:3px solid rgba(201,146,42,0.3);position:relative;}
+.teacher-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;inset:0;}
+.teacher-card h4{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.teacher-card .t-role{font-size:13px;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.teacher-card .t-edu{font-size:13px;color:var(--text-mid);line-height:1.5;}
+.teacher-card .t-school{font-size:12px;color:var(--text-light);margin-top:4px;}
+.staff-empty{text-align:center;padding:60px 20px;color:var(--text-light);font-size:16px;background:var(--cream);border-radius:16px;border:2px dashed rgba(13,27,62,0.1);max-width:500px;margin:0 auto;}
+/* ABOUT */
+.about-section{background:var(--cream);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;}
+.about-visual{position:relative;height:480px;}
+.about-bg-block{position:absolute;bottom:0;right:0;width:85%;height:85%;background:linear-gradient(135deg,var(--navy),var(--navy-light));border-radius:20px;}
+.about-front-card{position:absolute;top:0;left:0;width:78%;padding:36px;background:var(--white);border-radius:20px;box-shadow:var(--shadow);border-top:4px solid var(--gold);}
+.about-front-card h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:12px;}
+.about-front-card p{font-size:14px;color:var(--text-mid);line-height:1.7;}
+.about-stats-mini{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;}
+.mini-stat{padding:16px;background:var(--cream);border-radius:10px;text-align:center;}
+.mini-stat .n{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--gold);}
+.mini-stat .l{font-size:11px;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;}
+.about-text h2{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:20px;}
+.about-text p{font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:20px;}
+.value-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+.pill{padding:8px 18px;background:var(--white);border:1px solid rgba(13,27,62,0.12);border-radius:30px;font-size:13px;font-weight:500;color:var(--navy);display:flex;align-items:center;gap:8px;}
+.pill span{width:8px;height:8px;border-radius:50%;background:var(--gold);display:inline-block;}
+/* FEATURES */
+.features-section{background:var(--navy);}
+.features-section .section-header h2{color:var(--white);}
+.features-section .section-header p{color:rgba(255,255,255,0.6);}
+.features-section .section-tag{background:rgba(201,146,42,0.2);border-color:rgba(201,146,42,0.4);}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;max-width:1200px;margin:0 auto;}
+.feature-card{padding:32px 24px;border-radius:16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);transition:all 0.3s;}
+.feature-card:hover{background:rgba(201,146,42,0.08);border-color:rgba(201,146,42,0.3);transform:translateY(-4px);}
+.feature-icon{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;}
+.feature-card h4{font-size:17px;font-weight:600;color:var(--white);margin-bottom:10px;}
+.feature-card p{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.6;}
+/* CONTACT */
+.contact-section{background:var(--cream);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1000px;margin:0 auto;}
+.contact-info h3{font-family:'Playfair Display',serif;font-size:28px;color:var(--navy);margin-bottom:20px;}
+.contact-info p{font-size:15px;color:var(--text-mid);line-height:1.7;margin-bottom:24px;}
+.contact-item{display:flex;gap:16px;align-items:flex-start;margin-bottom:20px;}
+.contact-item-icon{width:44px;height:44px;border-radius:10px;flex-shrink:0;background:rgba(13,27,62,0.06);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.contact-item-text strong{display:block;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--text-light);margin-bottom:4px;}
+.contact-item-text span{font-size:15px;color:var(--navy);font-weight:500;}
+.contact-form{background:var(--white);padding:36px;border-radius:16px;border:1px solid rgba(13,27,62,0.08);box-shadow:0 4px 20px rgba(13,27,62,0.06);}
+.form-group{margin-bottom:20px;}
+.form-group label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:12px 16px;border:1px solid rgba(13,27,62,0.15);border-radius:8px;font-family:'Outfit',sans-serif;font-size:15px;color:var(--navy);background:var(--cream);transition:border-color 0.2s;outline:none;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,146,42,0.1);}
+.form-group textarea{resize:vertical;min-height:100px;}
+.contact-send-btn{width:100%;padding:14px;border:none;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);font-weight:700;font-size:15px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.3s;box-shadow:0 8px 24px rgba(201,146,42,0.3);}
+.contact-send-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,146,42,0.45);}
+.contact-send-btn:disabled{opacity:0.7;cursor:not-allowed;transform:none;}
+.form-alert{padding:12px 16px;border-radius:8px;font-size:14px;margin-top:12px;display:none;}
+.form-alert.success{background:rgba(45,140,106,0.1);border:1px solid rgba(45,140,106,0.3);color:#1B6E4F;display:block;}
+.form-alert.error{background:rgba(220,50,50,0.1);border:1px solid rgba(220,50,50,0.3);color:#c0392b;display:block;}
+.emailjs-notice{background:rgba(201,146,42,0.1);border:1px solid rgba(201,146,42,0.3);border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:13px;color:#8B5E00;line-height:1.6;}
+.emailjs-notice strong{display:block;margin-bottom:4px;}
+/* FOOTER */
+footer{background:var(--navy);padding:60px 5% 32px;border-top:3px solid var(--gold);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.footer-brand .emblem{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:22px;color:var(--navy);margin-bottom:16px;}
+.footer-brand h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);margin-bottom:12px;}
+.footer-brand p{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;}
+.footer-col h4{font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold-light);margin-bottom:20px;font-weight:600;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:12px;}
+.footer-col ul a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:14px;transition:color 0.2s;}
+.footer-col ul a:hover{color:var(--gold-light);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;}
+.footer-bottom p{font-size:13px;color:rgba(255,255,255,0.35);}
+/* SCHOOL DETAIL */
+.school-detail{display:none;}
+.school-detail.active{display:block;}
+.main-content{display:block;}
+.main-content.hidden{display:none;}
+.school-hero{min-height:420px;display:flex;align-items:flex-end;padding:0 5% 60px;position:relative;overflow:hidden;padding-top:72px;}
+.school-hero-content{position:relative;z-index:1;max-width:700px;}
+.school-hero-content .back-btn{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:24px;cursor:pointer;background:none;border:none;font-family:'Outfit',sans-serif;transition:color 0.2s;}
+.school-hero-content .back-btn:hover{color:var(--gold-light);}
+.school-hero-content h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,54px);font-weight:900;color:var(--white);line-height:1.1;}
+.school-meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;}
+.school-meta-tag{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.75);font-size:14px;}
+.school-detail-body{padding:80px 5%;background:var(--cream);}
+.detail-grid{display:grid;grid-template-columns:2fr 1fr;gap:48px;max-width:1200px;margin:0 auto;}
+.detail-section{background:var(--white);border-radius:16px;padding:36px;margin-bottom:28px;border:1px solid rgba(13,27,62,0.06);}
+.detail-section h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(13,27,62,0.08);}
+.detail-section p{font-size:15px;color:var(--text-mid);line-height:1.8;}
+.sidebar-card{background:var(--white);border-radius:16px;padding:28px;margin-bottom:24px;border:1px solid rgba(13,27,62,0.06);}
+.sidebar-card h4{font-size:14px;text-transform:uppercase;letter-spacing:1px;color:var(--text-light);margin-bottom:16px;font-weight:600;}
+.info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(13,27,62,0.06);font-size:14px;}
+.info-row:last-child{border:none;}
+.info-row .label{color:var(--text-light);}
+.info-row .value{font-weight:600;color:var(--navy);}
+/* ADMIN */
+.admin-panel{display:none;position:fixed;inset:0;z-index:2000;background:rgba(10,20,50,0.92);backdrop-filter:blur(8px);overflow-y:auto;}
+.admin-panel.active{display:flex;align-items:flex-start;justify-content:center;padding:30px 20px;}
+.admin-container{background:var(--white);border-radius:20px;width:100%;max-width:900px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.4);}
+.admin-header{background:linear-gradient(135deg,var(--navy),var(--navy-light));padding:28px 36px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--gold);}
+.admin-header h2{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);}
+.admin-header p{font-size:13px;color:rgba(255,255,255,0.5);margin-top:4px;}
+.admin-close{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);border:none;color:white;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.admin-close:hover{background:rgba(255,255,255,0.2);}
+.admin-body{padding:36px;}
+.admin-tabs{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap;}
+.admin-tab{padding:9px 20px;border-radius:30px;border:none;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;background:var(--cream);color:var(--text-mid);}
+.admin-tab.active{background:var(--navy);color:white;}
+.admin-tab-content{display:none;}
+.admin-tab-content.active{display:block;}
+.admin-form-group{margin-bottom:20px;}
+.admin-form-group label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px;}
+.admin-form-group select,.admin-form-group textarea,.admin-form-group input{width:100%;padding:11px 14px;border:1.5px solid rgba(13,27,62,0.15);border-radius:8px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--navy);background:var(--cream);outline:none;transition:border-color 0.2s;}
+.admin-form-group select:focus,.admin-form-group textarea:focus,.admin-form-group input:focus{border-color:var(--gold);}
+.admin-form-group textarea{min-height:120px;resize:vertical;}
+.admin-save-btn{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);border:none;padding:12px 28px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;}
+.admin-save-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,146,42,0.4);}
+.admin-notice{padding:12px 16px;border-radius:8px;background:rgba(45,140,106,0.1);border:1px solid rgba(45,140,106,0.3);color:#1B6E4F;font-size:14px;margin-bottom:20px;display:none;}
+.admin-notice.show{display:block;}
+.removable-item{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--cream);border-radius:8px;margin-bottom:10px;font-size:14px;color:var(--navy);}
+.remove-btn{background:rgba(220,50,50,0.1);border:none;padding:5px 12px;border-radius:6px;color:#c0392b;font-size:12px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;flex-shrink:0;margin-left:10px;}
+.remove-btn:hover{background:rgba(220,50,50,0.2);}
+.photo-preview{width:80px;height:80px;border-radius:50%;background:var(--cream);border:2px dashed rgba(13,27,62,0.2);display:flex;align-items:center;justify-content:center;font-size:28px;overflow:hidden;margin:0 auto 10px;cursor:pointer;transition:border-color 0.2s;position:relative;}
+.photo-preview:hover{border-color:var(--gold);}
+.photo-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.photo-upload-hint{font-size:12px;color:var(--text-light);text-align:center;margin-bottom:14px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.staff-admin-card{background:var(--cream);border-radius:12px;padding:18px;margin-bottom:12px;display:flex;align-items:center;gap:14px;border:1px solid rgba(13,27,62,0.08);}
+.staff-admin-photo{width:52px;height:52px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--navy),var(--navy-light));display:flex;align-items:center;justify-content:center;font-size:20px;overflow:hidden;border:2px solid rgba(201,146,42,0.3);position:relative;}
+.staff-admin-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.staff-admin-info{flex:1;}
+.staff-admin-info strong{display:block;font-size:15px;color:var(--navy);font-weight:700;}
+.staff-admin-info em{display:block;font-size:12px;color:var(--gold);font-style:normal;font-weight:600;}
+.staff-admin-info span{font-size:12px;color:var(--text-mid);}
+.emailjs-config-box{background:#FFF9F0;border:1px solid rgba(201,146,42,0.3);border-radius:12px;padding:24px;margin-bottom:20px;}
+.emailjs-config-box h4{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.emailjs-config-box p,.emailjs-config-box li{font-size:13px;color:var(--text-mid);line-height:1.7;}
+.emailjs-config-box a{color:var(--gold);font-weight:600;}
+.emailjs-config-box ol{padding-left:18px;margin:8px 0 16px;}
+.config-status{padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;margin-top:12px;}
+.config-status.ok{background:rgba(45,140,106,0.1);color:#1B6E4F;}
+.config-status.warn{background:rgba(201,146,42,0.1);color:#8B5E00;}
+.login-modal{display:none;position:fixed;inset:0;z-index:3000;background:rgba(10,20,50,0.95);align-items:center;justify-content:center;}
+.login-modal.active{display:flex;}
+.login-box{background:var(--white);border-radius:20px;padding:48px;max-width:400px;width:90%;box-shadow:0 40px 100px rgba(0,0,0,0.5);}
+.login-box .lock-icon{font-size:40px;text-align:center;margin-bottom:8px;}
+.login-box h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--navy);text-align:center;margin-bottom:6px;}
+.login-box p{font-size:14px;color:var(--text-light);text-align:center;margin-bottom:28px;}
+.login-error{color:#c0392b;font-size:13px;margin-top:10px;display:none;text-align:center;}
+.login-error.show{display:block;}
+.login-close{float:right;background:none;border:none;font-size:22px;cursor:pointer;color:var(--text-light);margin-top:-36px;}
+@media(max-width:900px){.about-grid,.contact-grid,.detail-grid{grid-template-columns:1fr;}.about-visual{height:300px;}.footer-grid{grid-template-columns:1fr 1fr;}.nav-links{display:none;}.hero-stats{gap:28px;}.director-card{flex-direction:column;text-align:center;}.form-row{grid-template-columns:1fr;}}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr;}.hero-stats{flex-direction:column;gap:16px;}nav{padding:0 4%;}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#" onclick="showMain();return false">
+    <div class="emblem">A</div>
+    <div class="logo-text"><strong>Aziz Group of Schools</strong><span>Excellence in Education</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showMain();return false">Home</a></li>
+    <li><a href="#schools">Our Schools</a></li>
+    <li><a href="#staff">Our Team</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-admin-btn" onclick="openLogin()">&#9881; Admin</button>
+</nav>
+
+<div class="main-content" id="mainContent">
+
+  <section class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-badge">&#10022; Est. 2000 &middot; Multan, Punjab</div>
+      <h1>Aziz Group<span>of Schools</span></h1>
+      <p>Nurturing young minds with quality education, moral values, and a vision for a brighter tomorrow &mdash; across four distinguished institutions.</p>
+      <div class="hero-cta">
+        <a href="#schools" class="btn-primary">Explore Our Schools</a>
+        <a href="#about" class="btn-outline">Learn More</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="num">4</div><div class="label">Schools</div></div>
+        <div class="stat"><div class="num">2000+</div><div class="label">Students</div></div>
+        <div class="stat"><div class="num">24</div><div class="label">Years</div></div>
+        <div class="stat"><div class="num">100+</div><div class="label">Staff</div></div>
+      </div>
+    </div>
+    <div class="scroll-indicator"><svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></div>
+  </section>
+
+  <section class="schools-section" id="schools">
+    <div class="section-header">
+      <span class="section-tag">&#10022; Our Institutions</span>
+      <h2>Four Schools, One Legacy</h2>
+      <p>Each school under the Aziz Group is committed to academic excellence and character development.</p>
+    </div>
+    <div class="schools-grid">
+      <a class="school-card card-navy" onclick="showSchool('apms');return false" href="#">
+        <div class="school-card-img"><div class="card-pattern"></div><div class="school-icon-big">&#127979;</div><div class="school-card-arrow"><svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 18l6-6-6-6"/></svg></div></div>
+        <div class="school-card-body"><h3>Aziz Public Model School</h3><p id="apms-desc-short">A premier co-educational institution offering world-class academics from Nursery to Matriculation with a focus on holistic development.</p><span class="school-card-tag">&#127894; Co-Educational &middot; Nursery&ndash;Matric</span></div>
+      </a>
+      <a class="school-card card-green" onclick="showSchool('kids');return false" href="#">
+        <div class="school-card-img"><div class="card-pattern"></div><div class="school-icon-big">&#127807;</div><div class="school-card-arrow"><svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 18l6-6-6-6"/></svg></div></div>
+        <div class="school-card-body"><h3>Aziz Kids</h3><p id="kids-desc-short">A nurturing early childhood center where little learners blossom through play-based and structured learning in a safe, joyful environment.</p><span class="school-card-tag">&#11088; Early Childhood &middot; Age 2&ndash;6</span></div>
+      </a>
+      <a class="school-card card-gold" onclick="showSchool('gps3');return false" href="#">
+        <div class="school-card-img"><div class="card-pattern"></div><div class="school-icon-big">&#128218;</div><div class="school-card-arrow"><svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 18l6-6-6-6"/></svg></div></div>
+        <div class="school-card-body"><h3>GPS Kothay Wala No. 3</h3><p id="gps3-desc-short">A government primary school providing quality foundational education to the community of Kothay Wala, empowering future generations.</p><span class="school-card-tag">&#128214; Government Primary School</span></div>
+      </a>
+      <a class="school-card card-teal" onclick="showSchool('gpsmw');return false" href="#">
+        <div class="school-card-img"><div class="card-pattern"></div><div class="school-icon-big">&#127963;</div><div class="school-card-arrow"><svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 18l6-6-6-6"/></svg></div></div>
+        <div class="school-card-body"><h3>GPS Munshi Wala</h3><p id="gpsmw-desc-short">Serving the Munshi Wala community with dedicated primary education, fostering literacy, numeracy, and a love for learning.</p><span class="school-card-tag">&#128214; Government Primary School</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- STAFF SECTION -->
+  <section class="staff-section" id="staff">
+    <div class="section-header">
+      <span class="section-tag">&#10022; Our Leadership &amp; Team</span>
+      <h2>The People Behind the Excellence</h2>
+      <p>Meet our dedicated Director and the talented educators shaping the future of every student at Aziz Group of Schools.</p>
+    </div>
+    <div class="director-wrap">
+      <div class="director-card">
+        <div class="director-photo" id="director-photo-wrap">
+          <span id="director-emoji">&#128084;</span>
+          <img id="director-img" src="" alt="" style="display:none">
+        </div>
+        <div class="director-info">
+          <div class="director-badge">&#10022; Director</div>
+          <h3 id="director-name">Muhammad Aqil</h3>
+          <div class="dir-edu" id="director-edu">M.Ed, B.Sc &mdash; University of Education, Multan</div>
+          <p id="director-bio">With over 25 years of experience in education, our Director founded the Aziz Group with a singular vision: to bring quality education within reach of every child in our community. His unwavering commitment to academic excellence and moral development has been the driving force behind the group's growth and impact.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Faculty sections are shown per-school in detail pages -->
+  </section>
+
+  <section class="about-section" id="about">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-bg-block"></div>
+        <div class="about-front-card">
+          <h3>Our Mission</h3>
+          <p>To provide every child with a transformative educational experience that builds knowledge, character, and confidence &mdash; preparing them not just for exams, but for life.</p>
+          <div class="about-stats-mini">
+            <div class="mini-stat"><div class="n">4</div><div class="l">Schools</div></div>
+            <div class="mini-stat"><div class="n">25+</div><div class="l">Years</div></div>
+            <div class="mini-stat"><div class="n">2000+</div><div class="l">Students</div></div>
+            <div class="mini-stat"><div class="n">100+</div><div class="l">Teachers</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="section-tag">&#10022; About Us</span>
+        <h2>A Legacy of Learning &amp; Excellence</h2>
+        <p id="about-desc">Aziz Group of Schools has been a cornerstone of quality education in Multan, Punjab for over two decades. Founded with a vision to make excellent education accessible to every child, our group encompasses institutions ranging from government primary schools to a full co-educational model school.</p>
+        <p>We believe education is the most powerful tool for social transformation. Our schools operate with transparency, dedication, and an unwavering commitment to student success.</p>
+        <div class="value-pills">
+          <div class="pill"><span></span>Academic Excellence</div>
+          <div class="pill"><span></span>Moral Values</div>
+          <div class="pill"><span></span>Inclusive Learning</div>
+          <div class="pill"><span></span>Community Service</div>
+          <div class="pill"><span></span>Innovation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="section-header">
+      <span class="section-tag">&#10022; Why Choose Us</span>
+      <h2>What Makes Us Different</h2>
+      <p>At Aziz Group, we go beyond textbooks to shape confident, compassionate leaders.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">&#127892;</div><h4>Qualified Faculty</h4><p>Experienced, trained teachers passionate about student success and continuous learning.</p></div>
+      <div class="feature-card"><div class="feature-icon">&#128300;</div><h4>Modern Curriculum</h4><p>Updated syllabi aligned with national standards, enriched with 21st-century skills.</p></div>
+      <div class="feature-card"><div class="feature-icon">&#128737;</div><h4>Safe Environment</h4><p>A secure, inclusive campus where every student feels protected, respected, and valued.</p></div>
+      <div class="feature-card"><div class="feature-icon">&#127942;</div><h4>Proven Results</h4><p>Consistent high academic performance with students excelling in board exams.</p></div>
+      <div class="feature-card"><div class="feature-icon">&#9917;</div><h4>Extracurriculars</h4><p>Sports, arts, debate, and clubs developing well-rounded personalities beyond classroom.</p></div>
+      <div class="feature-card"><div class="feature-icon">&#129309;</div><h4>Community Roots</h4><p>Deep ties to the local community with affordable, accessible education for all.</p></div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <div class="section-header">
+      <span class="section-tag">&#10022; Get In Touch</span>
+      <h2>Contact Aziz Group of Schools</h2>
+      <p>We'd love to hear from you. Reach out for admissions, inquiries, or general information.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Visit Us or Get in Touch</h3>
+        <p>Our administrative office is here to assist parents, students, and community members. Don't hesitate to reach out.</p>
+        <div class="contact-item"><div class="contact-item-icon">&#128205;</div><div class="contact-item-text"><strong>Address</strong><span>Multan, Punjab, Pakistan</span></div></div>
+        <div class="contact-item"><div class="contact-item-icon">&#128222;</div><div class="contact-item-text"><strong>Phone</strong><span id="contact-phone">+92-XXX-XXXXXXX</span></div></div>
+        <div class="contact-item"><div class="contact-item-icon">&#128231;</div><div class="contact-item-text"><strong>Email</strong><span id="contact-email">info@azizschools.edu.pk</span></div></div>
+        <div class="contact-item"><div class="contact-item-icon">&#128336;</div><div class="contact-item-text"><strong>Office Hours</strong><span>Mon&ndash;Sat: 8:00 AM &ndash; 3:00 PM</span></div></div>
+      </div>
+      <div class="contact-form">
+        <div id="emailjs-notice" class="emailjs-notice" style="display:none"><strong>&#9888; Email notifications not configured</strong>Go to Admin &rarr; Email tab to enable notifications.</div>
+        <div class="form-group"><label>Full Name</label><input type="text" id="cf-name" placeholder="Your full name"></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" id="cf-phone" placeholder="+92-XXX-XXXXXXX"></div>
+        <div class="form-group"><label>School of Interest</label>
+          <select id="cf-school">
+            <option value="apms" data-school="apms">Aziz Public Model School</option>
+            <option value="kids" data-school="kids">Aziz Kids</option>
+            <option value="gps3" data-school="gps3">GPS Kothay Wala No. 3</option>
+            <option value="gpsmw" data-school="gpsmw">GPS Munshi Wala</option>
+          </select>
+          <div id="adm-closed-msg" style="color:#dc3545;font-size:13px;margin-top:8px;display:none">❌ Admissions closed for selected school</div>
+        </div>
+        <div class="form-group"><label>Message</label><textarea id="cf-message" placeholder="Your message or inquiry..."></textarea></div>
+        <button class="contact-send-btn" id="send-btn" onclick="sendContactForm()"><span id="send-txt">&#9993; Send Message</span></button>
+        <div class="form-alert" id="form-alert"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="emblem">A</div><h3>Aziz Group of Schools</h3><p>Dedicated to nurturing excellence in education across Multan, Punjab since our founding.</p></div>
+      <div class="footer-col"><h4>Our Schools</h4><ul>
+        <li><a href="#" onclick="showSchool('apms');return false">Aziz Public Model School</a></li>
+        <li><a href="#" onclick="showSchool('kids');return false">Aziz Kids</a></li>
+        <li><a href="#" onclick="showSchool('gps3');return false">GPS Kothay Wala No. 3</a></li>
+        <li><a href="#" onclick="showSchool('gpsmw');return false">GPS Munshi Wala</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Quick Links</h4><ul>
+        <li><a href="#about">About Us</a></li><li><a href="#staff">Our Team</a></li>
+        <li><a href="#contact">Contact</a></li><li><a href="#" onclick="openLogin();return false">Admin Panel</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul>
+        <li><a href="#">Multan, Punjab</a></li>
+        <li><a href="#" id="footer-phone">+92-XXX-XXXXXXX</a></li>
+        <li><a href="#" id="footer-email">info@azizschools.edu.pk</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2001 Aziz Group of Schools. All Rights Reserved.</p><p>Multan, Punjab, Pakistan</p></div>
+  </footer>
+</div>
+
+<!-- SCHOOL DETAIL PAGES -->
+<div class="school-detail" id="detail-apms">
+  <div class="school-hero" style="background:linear-gradient(160deg,var(--navy) 0%,var(--navy-light) 100%)">
+    <div class="school-hero-content">
+      <button class="back-btn" onclick="showMain()">&#8592; Back to All Schools</button>
+      <h1>Aziz Public<br>Model School</h1>
+      <div class="school-meta"><span class="school-meta-tag">&#127979; Co-Educational</span><span class="school-meta-tag">&#128218; Nursery to Matriculation</span><span class="school-meta-tag">&#128205; Multan</span></div>
+    </div>
+  </div>
+  <div class="school-detail-body"><div class="detail-grid">
+    <div>
+      <div class="detail-section"><h3>About the School</h3><p id="apms-about">Aziz Public Model School is the flagship institution of the Aziz Group of Schools. It is a premier co-educational school offering education from Nursery through Matriculation. The school is committed to providing a nurturing, stimulating, and challenging academic environment that fosters intellectual curiosity and personal growth in every student.</p></div>
+      <div class="detail-section"><h3>Academic Programs</h3><p id="apms-programs">We offer a comprehensive curriculum from Early Childhood Education through Matriculation, following the Punjab Curriculum and Textbook Board guidelines, enriched with additional learning programs to ensure academic excellence.</p></div>
+      <div class="detail-section"><h3>Facilities &amp; Activities</h3><div id="apms-facilities-list"><div class="removable-item">&#128300; Science &amp; Computer Laboratories</div><div class="removable-item">&#128214; Well-stocked Library</div><div class="removable-item">&#9917; Sports Ground &amp; Gymnasium</div><div class="removable-item">&#127912; Arts &amp; Crafts Room</div><div class="removable-item">&#127942; Annual Sports Day &amp; Prize Distribution</div></div></div>
+      <div class="detail-section"><h3>Faculty &amp; Staff</h3><div id="apms-faculty-list" class="teachers-grid"></div></div>
+    </div>
+    <div>
+      <div class="sidebar-card"><h4>School Info</h4><div class="info-row"><span class="label">Type</span><span class="value">Co-Educational</span></div><div class="info-row"><span class="label">Levels</span><span class="value">Nursery &ndash; Matric</span></div><div class="info-row"><span class="label">Medium</span><span class="value" id="apms-medium">English &amp; Urdu</span></div><div class="info-row"><span class="label">Location</span><span class="value">Multan</span></div></div>
+      <div class="sidebar-card"><h4>Admissions</h4><p style="font-size:14px;color:var(--text-mid);line-height:1.7" id="apms-admissions">Admissions are open for all classes. Contact the school office for registration forms, fee structure, and interview schedules.</p><button class="btn-primary" style="margin-top:16px;width:100%" onclick="showMain();setTimeout(()=>document.getElementById('contact').scrollIntoView(),300)">Enquire Now</button></div>
+    </div>
+  </div></div>
+</div>
+
+<div class="school-detail" id="detail-kids">
+  <div class="school-hero" style="background:linear-gradient(160deg,#1B6E4F 0%,#2D8C6A 100%)">
+    <div class="school-hero-content">
+      <button class="back-btn" onclick="showMain()">&#8592; Back to All Schools</button>
+      <h1>Aziz Kids</h1>
+      <div class="school-meta"><span class="school-meta-tag">&#127807; Early Childhood</span><span class="school-meta-tag">&#128118; Age 2&ndash;6 Years</span><span class="school-meta-tag">&#128205; Multan</span></div>
+    </div>
+  </div>
+  <div class="school-detail-body"><div class="detail-grid">
+    <div>
+      <div class="detail-section"><h3>About Aziz Kids</h3><p id="kids-about">Aziz Kids is a dedicated early childhood education center providing a warm, loving, and stimulating environment for children aged 2 to 6 years. Our play-based and inquiry-driven curriculum develops cognitive, social, emotional, and physical skills during the most critical years of a child's development.</p></div>
+      <div class="detail-section"><h3>Programs Offered</h3><p id="kids-programs">We offer Toddler Program (age 2-3), Nursery (age 3-4), Kindergarten I and II, with age-appropriate activities, storytelling, music, art, and early literacy and numeracy.</p></div>
+      <div class="detail-section"><h3>Features &amp; Activities</h3><div id="kids-facilities-list"><div class="removable-item">&#127904; Indoor &amp; Outdoor Play Area</div><div class="removable-item">&#128218; Storytelling &amp; Reading Circles</div><div class="removable-item">&#127912; Arts, Crafts &amp; Music</div><div class="removable-item">&#129513; Learning Through Play</div><div class="removable-item">&#127822; Nutrition &amp; Health Program</div></div></div>
+      <div class="detail-section"><h3>Faculty &amp; Staff</h3><div id="kids-faculty-list" class="teachers-grid"></div></div>
+    </div>
+    <div>
+      <div class="sidebar-card"><h4>School Info</h4><div class="info-row"><span class="label">Type</span><span class="value">Pre-School</span></div><div class="info-row"><span class="label">Age</span><span class="value">2&ndash;6 Years</span></div><div class="info-row"><span class="label">Medium</span><span class="value" id="kids-medium">English &amp; Urdu</span></div><div class="info-row"><span class="label">Location</span><span class="value">Multan</span></div></div>
+      <div class="sidebar-card"><h4>Admissions</h4><p style="font-size:14px;color:var(--text-mid);line-height:1.7" id="kids-admissions">Rolling admissions throughout the year. Parents are invited to visit the campus and meet our warm, professional staff before enrollment.</p><button class="btn-primary" style="margin-top:16px;width:100%" onclick="showMain();setTimeout(()=>document.getElementById('contact').scrollIntoView(),300)">Enquire Now</button></div>
+    </div>
+  </div></div>
+</div>
+
+<div class="school-detail" id="detail-gps3">
+  <div class="school-hero" style="background:linear-gradient(160deg,#8B5E00 0%,#C9922A 100%)">
+    <div class="school-hero-content">
+      <button class="back-btn" onclick="showMain()">&#8592; Back to All Schools</button>
+      <h1>GPS Kothay Wala<br>No. 3</h1>
+      <div class="school-meta"><span class="school-meta-tag">&#128214; Government Primary</span><span class="school-meta-tag">&#128205; Kothay Wala</span></div>
+    </div>
+  </div>
+  <div class="school-detail-body"><div class="detail-grid">
+    <div>
+      <div class="detail-section"><h3>About the School</h3><p id="gps3-about">GPS Kothay Wala No. 3 is a government primary school serving the local community with quality foundational education. Under the Aziz Group umbrella, this institution benefits from enhanced administrative support and academic guidance, ensuring every child receives the education they deserve.</p></div>
+      <div class="detail-section"><h3>Curriculum &amp; Standards</h3><p id="gps3-programs">Following Punjab Curriculum and Textbook Board standards for Classes 1 through 5, with dedicated teachers making learning accessible, engaging, and effective for all students.</p></div>
+      <div class="detail-section"><h3>Facilities</h3><div id="gps3-facilities-list"><div class="removable-item">&#127979; Clean &amp; Safe Classrooms</div><div class="removable-item">&#128688; Clean Drinking Water</div><div class="removable-item">&#128218; Textbooks &amp; Learning Materials</div><div class="removable-item">&#127795; Outdoor Play Area</div></div></div>
+      <div class="detail-section"><h3>Faculty &amp; Staff</h3><div id="gps3-faculty-list" class="teachers-grid"></div></div>
+    </div>
+    <div>
+      <div class="sidebar-card"><h4>School Info</h4><div class="info-row"><span class="label">Type</span><span class="value">Govt. Primary</span></div><div class="info-row"><span class="label">Classes</span><span class="value">1&ndash;5</span></div><div class="info-row"><span class="label">Medium</span><span class="value" id="gps3-medium">Urdu</span></div><div class="info-row"><span class="label">Area</span><span class="value">Kothay Wala</span></div></div>
+      <div class="sidebar-card"><h4>Admissions</h4><p style="font-size:14px;color:var(--text-mid);line-height:1.7" id="gps3-admissions">Admissions follow Punjab Education Department guidelines. Contact us for enrollment details.</p><button class="btn-primary" style="margin-top:16px;width:100%" onclick="showMain();setTimeout(()=>document.getElementById('contact').scrollIntoView(),300)">Enquire Now</button></div>
+    </div>
+  </div></div>
+</div>
+
+<div class="school-detail" id="detail-gpsmw">
+  <div class="school-hero" style="background:linear-gradient(160deg,#1A5276 0%,#1F7EA3 100%)">
+    <div class="school-hero-content">
+      <button class="back-btn" onclick="showMain()">&#8592; Back to All Schools</button>
+      <h1>GPS Munshi Wala</h1>
+      <div class="school-meta"><span class="school-meta-tag">&#128214; Government Primary</span><span class="school-meta-tag">&#128205; Munshi Wala</span></div>
+    </div>
+  </div>
+  <div class="school-detail-body"><div class="detail-grid">
+    <div>
+      <div class="detail-section"><h3>About the School</h3><p id="gpsmw-about">GPS Munshi Wala is a beloved government primary school serving the Munshi Wala community. As part of the Aziz Group family, the school receives support in teacher training, resource provision, and academic monitoring, standing as a pillar of accessible quality education.</p></div>
+      <div class="detail-section"><h3>Curriculum &amp; Standards</h3><p id="gpsmw-programs">Aligned with Punjab Curriculum and Textbook Board standards for Classes 1-5, with a special focus on literacy, numeracy, and Islamic studies.</p></div>
+      <div class="detail-section"><h3>Facilities</h3><div id="gpsmw-facilities-list"><div class="removable-item">&#127979; Renovated Classrooms</div><div class="removable-item">&#128218; Learning Resources &amp; Textbooks</div><div class="removable-item">&#128688; Safe Water &amp; Sanitation</div><div class="removable-item">&#127795; Play Area</div></div></div>
+      <div class="detail-section"><h3>Faculty &amp; Staff</h3><div id="gpsmw-faculty-list" class="teachers-grid"></div></div>
+    </div>
+    <div>
+      <div class="sidebar-card"><h4>School Info</h4><div class="info-row"><span class="label">Type</span><span class="value">Govt. Primary</span></div><div class="info-row"><span class="label">Classes</span><span class="value">1&ndash;5</span></div><div class="info-row"><span class="label">Medium</span><span class="value" id="gpsmw-medium">Urdu</span></div><div class="info-row"><span class="label">Area</span><span class="value">Munshi Wala</span></div></div>
+      <div class="sidebar-card"><h4>Admissions</h4><p style="font-size:14px;color:var(--text-mid);line-height:1.7" id="gpsmw-admissions">Admissions follow Punjab Education Department procedures. All children in the area are welcome.</p><button class="btn-primary" style="margin-top:16px;width:100%" onclick="showMain();setTimeout(()=>document.getElementById('contact').scrollIntoView(),300)">Enquire Now</button></div>
+    </div>
+  </div></div>
+</div>
+
+<!-- LOGIN -->
+<div class="login-modal" id="loginModal">
+  <div class="login-box">
+    <button class="login-close" onclick="closeLogin()">&#215;</button>
+    <div class="lock-icon">&#128272;</div>
+    <h2>Admin Access</h2>
+    <p>Enter credentials to manage school content</p>
+    <div class="admin-form-group"><label>Username</label><input type="text" id="loginUser" placeholder="admin"></div>
+    <div class="admin-form-group"><label>Password</label><input type="password" id="loginPass" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <button class="admin-save-btn" style="width:100%;margin-top:4px" onclick="doLogin()">Login &#8594;</button>
+    <div class="login-error" id="loginError">&#10060; Incorrect username or password.</div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-container">
+    <div class="admin-header">
+      <div><h2>&#9881; Admin Panel</h2><p>Manage school content, staff &amp; settings</p></div>
+      <button class="admin-close" onclick="closeAdmin()">&#215;</button>
+    </div>
+    <div class="admin-body">
+      <div class="admin-notice" id="adminNotice">&#10003; Changes saved successfully!</div>
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchTab('descriptions',this)">&#128221; Descriptions</button>
+        <button class="admin-tab" onclick="switchTab('staff-mgmt',this)">&#128101; Staff</button>
+        <button class="admin-tab" onclick="switchTab('facilities',this)">&#127979; Facilities</button>
+        <button class="admin-tab" onclick="switchTab('admissions',this)">&#128203; Admissions</button>
+        <button class="admin-tab" onclick="switchTab('contact-info',this)">&#128222; Contact</button>
+        <button class="admin-tab" onclick="switchTab('announcements',this)">&#128242; Announcements</button>
+        <button class="admin-tab" onclick="switchTab('email-config',this)">&#9993; Email</button>
+        <button class="admin-tab" onclick="switchTab('theme-settings',this)">&#127988; Theme</button>
+        <button class="admin-tab" onclick="switchTab('about-group',this)">&#8505; About</button>
+        <button class="admin-tab" onclick="switchTab('action-history',this)">&#128450; Action History</button>
+      </div>
+
+      <!-- DESCRIPTIONS -->
+      <div class="admin-tab-content active" id="tab-descriptions">
+        <div class="admin-form-group"><label>Select School</label><select id="desc-school"><option value="apms">Aziz Public Model School</option><option value="kids">Aziz Kids</option><option value="gps3">GPS Kothay Wala No. 3</option><option value="gpsmw">GPS Munshi Wala</option></select></div>
+        <div class="admin-form-group"><label>Short Description (homepage card)</label><textarea id="desc-short"></textarea></div>
+        <div class="admin-form-group"><label>Full About Description (detail page)</label><textarea id="desc-about" style="min-height:160px"></textarea></div>
+        <div class="admin-form-group"><label>Programs Description</label><textarea id="desc-programs"></textarea></div>
+        <button class="admin-save-btn" onclick="saveDescriptions()">&#128190; Save Descriptions</button>
+      </div>
+
+      <!-- STAFF -->
+      <div class="admin-tab-content" id="tab-staff-mgmt">
+        <h4 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--gold)">&#128084; Director Information</h4>
+        <div style="background:var(--cream);border-radius:12px;padding:24px;margin-bottom:28px">
+          <div style="text-align:center;margin-bottom:4px">
+            <div class="photo-preview" id="dir-preview" onclick="document.getElementById('dir-file').click()">
+              <span id="dir-emoji-prev">&#128084;</span>
+              <img id="dir-img-prev" src="" alt="" style="display:none">
+            </div>
+            <div class="photo-upload-hint">Click photo to upload image (optional)</div>
+            <input type="file" id="dir-file" accept="image/*" style="display:none" onchange="handleDirPhoto(this)">
+          </div>
+          <div class="form-row">
+            <div class="admin-form-group"><label>Director's Full Name</label><input type="text" id="dir-name" placeholder="Full Name"></div>
+            <div class="admin-form-group"><label>Qualifications / Education</label><input type="text" id="dir-edu" placeholder="e.g. M.Ed, B.Sc &mdash; University Name"></div>
+          </div>
+          <div class="admin-form-group"><label>Biography</label><textarea id="dir-bio" style="min-height:100px"></textarea></div>
+          <button class="admin-save-btn" onclick="saveDirector()">&#128190; Save Director Info</button>
+        </div>
+
+        <h4 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(13,27,62,0.1)">&#10133; Add Teacher / Staff Member</h4>
+        <div style="background:var(--cream);border-radius:12px;padding:24px;margin-bottom:24px">
+          <div style="text-align:center;margin-bottom:4px">
+            <div class="photo-preview" id="t-preview" onclick="document.getElementById('t-file').click()">
+              <span id="t-emoji-prev">&#128100;</span>
+              <img id="t-img-prev" src="" alt="" style="display:none">
+            </div>
+            <div class="photo-upload-hint">Click to upload photo (optional)</div>
+            <input type="file" id="t-file" accept="image/*" style="display:none" onchange="handleTeacherPhoto(this)">
+          </div>
+          <div class="form-row">
+            <div class="admin-form-group"><label>Full Name *</label><input type="text" id="t-name" placeholder="Teacher's full name"></div>
+            <div class="admin-form-group"><label>Role / Subject *</label><input type="text" id="t-role" placeholder="e.g. Science Teacher"></div>
+          </div>
+          <div class="form-row">
+            <div class="admin-form-group" style="flex:1"><label>Education / Qualification</label><input type="text" id="t-edu" placeholder="e.g. B.Ed, M.Sc Physics"></div>
+          </div>
+          <div class="admin-form-group"><label>Assign to School(s) * (Select all that apply - Principals can be in multiple schools)</label>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:12px;background:rgba(201,146,42,0.05);border-radius:8px;border:1px solid rgba(201,146,42,0.2)">
+              <label style="display:flex;align-items:center;gap:8px;font-weight:500"><input type="checkbox" class="t-school-check" value="apms" style="width:16px;height:16px;cursor:pointer"> Aziz Public Model School</label>
+              <label style="display:flex;align-items:center;gap:8px;font-weight:500"><input type="checkbox" class="t-school-check" value="kids" style="width:16px;height:16px;cursor:pointer"> Aziz Kids</label>
+              <label style="display:flex;align-items:center;gap:8px;font-weight:500"><input type="checkbox" class="t-school-check" value="gps3" style="width:16px;height:16px;cursor:pointer"> GPS Kothay Wala No. 3</label>
+              <label style="display:flex;align-items:center;gap:8px;font-weight:500"><input type="checkbox" class="t-school-check" value="gpsmw" style="width:16px;height:16px;cursor:pointer"> GPS Munshi Wala</label>
+            </div>
+          </div>
+          <button class="admin-save-btn" onclick="addTeacher()">&#10133; Add Staff Member</button>
+        </div>
+        <h4 style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">Current Faculty</h4>
+        <div id="staff-admin-list"><p style="font-size:14px;color:var(--text-light);text-align:center;padding:20px">No faculty  yet.</p></div>
+      </div>
+
+      <!-- FACILITIES -->
+      <div class="admin-tab-content" id="tab-facilities">
+        <div class="admin-form-group"><label>Select School</label><select id="fac-school" onchange="loadFacilities()"><option value="apms">Aziz Public Model School</option><option value="kids">Aziz Kids</option><option value="gps3">GPS Kothay Wala No. 3</option><option value="gpsmw">GPS Munshi Wala</option></select></div>
+        <div class="admin-form-group"><label>Add New Facility</label><div style="display:flex;gap:10px"><input type="text" id="fac-input" placeholder="e.g. &#128187; Computer Lab" style="flex:1"><button class="admin-save-btn" onclick="addFacility()">+ Add</button></div></div>
+        <div style="margin-top:20px"><label style="font-size:13px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:12px">Current Facilities</label><div id="fac-list"></div></div>
+      </div>
+
+      <!-- ADMISSIONS -->
+      <div class="admin-tab-content" id="tab-admissions">
+        <div class="admin-form-group"><label>Select School</label><select id="adm-school" onchange="loadAdmissionsStatus()"><option value="apms">Aziz Public Model School</option><option value="kids">Aziz Kids</option><option value="gps3">GPS Kothay Wala No. 3</option><option value="gpsmw">GPS Munshi Wala</option></select></div>
+        <div class="admin-form-group"><label>Admissions Text</label><textarea id="adm-text" style="min-height:140px"></textarea></div>
+        <div class="admin-form-group"><label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="adm-open" style="width:18px;height:18px;cursor:pointer"> ✅ Admissions are OPEN</label></div>
+        <button class="admin-save-btn" onclick="saveAdmissions()">&#128190; Save</button>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="admin-tab-content" id="tab-contact-info">
+        <h4 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--gold)">&#128222; General Contact</h4>
+        <div class="admin-form-group"><label>Main Phone Number</label><input type="text" id="ci-phone"></div>
+        <div class="admin-form-group"><label>Main Email Address</label><input type="text" id="ci-email"></div>
+        <button class="admin-save-btn" onclick="saveContact()">&#128190; Save</button>
+        
+        <h4 style="font-size:15px;font-weight:700;color:var(--navy);margin:24px 0 16px 0;padding-bottom:12px;border-bottom:2px solid var(--gold)">&#128219; School-Specific Contact Info</h4>
+        <div class="admin-form-group"><label>Select School</label><select id="sch-contact-school" onchange="loadSchoolContact()"><option value="apms">Aziz Public Model School</option><option value="kids">Aziz Kids</option><option value="gps3">GPS Kothay Wala No. 3</option><option value="gpsmw">GPS Munshi Wala</option></select></div>
+        <div class="admin-form-group"><label>Phone</label><input type="text" id="sch-phone" placeholder="School phone number"></div>
+        <div class="admin-form-group"><label>Email</label><input type="text" id="sch-email" placeholder="School email address"></div>
+        <div class="admin-form-group"><label>Location / Address</label><textarea id="sch-location" placeholder="School address and location" style="min-height:80px"></textarea></div>
+        <button class="admin-save-btn" onclick="saveSchoolContact()">&#128190; Save School Contact</button>
+      </div>
+
+      <!-- EMAIL CONFIG -->
+      <div class="admin-tab-content" id="tab-email-config">
+        <div class="emailjs-config-box">
+          <h4>&#128231; Email Notifications via EmailJS (Free &amp; No Backend Needed)</h4>
+          <p>When a visitor submits the contact form, you receive an instant email alert.</p>
+          <p style="margin-top:8px"><strong>Setup Steps:</strong></p>
+          <ol>
+            <li>Visit <a href="https://www.emailjs.com" target="_blank">emailjs.com</a> and create a free account</li>
+            <li>Add an Email Service (Gmail recommended) &rarr; copy <strong>Service ID</strong></li>
+            <li>Create a Template using these variables: <code>{{from_name}}</code>, <code>{{phone}}</code>, <code>{{school_name}}</code>, <code>{{message}}</code> &rarr; copy <strong>Template ID</strong></li>
+            <li>Go to Account &rarr; copy your <strong>Public Key</strong></li>
+            <li>Enter all three below and save</li>
+          </ol>
+        </div>
+        <div class="admin-form-group"><label>EmailJS Public Key</label><input type="text" id="ejs-key" placeholder="e.g. xxxxxxxxxxxxxxx"></div>
+        <div class="admin-form-group"><label>Service ID</label><input type="text" id="ejs-svc" placeholder="e.g. service_xxxxxxx"></div>
+        <div class="admin-form-group"><label>Template ID</label><input type="text" id="ejs-tpl" placeholder="e.g. template_xxxxxxx"></div>
+        <div class="admin-form-group"><label>Your Notification Email</label><input type="email" id="ejs-email" placeholder="your@gmail.com"></div>
+        <button class="admin-save-btn" onclick="saveEmailCfg()">&#128190; Save Email Config</button>
+        <div id="ecfg-status" class="config-status warn" style="margin-top:14px">&#9888; Not configured yet</div>
+      </div>
+
+      <!-- ANNOUNCEMENTS -->
+      <div class="admin-tab-content" id="tab-announcements">
+        <h4 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--gold)">&#128242; Create Announcement</h4>
+        <div class="admin-form-group"><label>Title (English)</label><input type="text" id="ann-title-en" placeholder="Announcement title in English"></div>
+        <div class="admin-form-group"><label>Title (Urdu)</label><input type="text" id="ann-title-ur" placeholder="اردو میں عنوان"></div>
+        <div class="admin-form-group"><label>Message (English)</label><textarea id="ann-msg-en" style="min-height:100px" placeholder="Announcement message in English"></textarea></div>
+        <div class="admin-form-group"><label>Message (Urdu)</label><textarea id="ann-msg-ur" style="min-height:100px" placeholder="اردو میں پیغام"></textarea></div>
+        <div class="admin-form-group"><label>Priority</label><select id="ann-priority"><option value="normal">🟢 Normal</option><option value="high">🟠 High</option><option value="urgent">🔴 Urgent</option></select></div>
+        <div class="admin-form-group"><label>Target Schools</label><div style="background:var(--cream);padding:12px;border-radius:8px;max-height:120px;overflow-y:auto"><label style="display:flex;align-items:center;gap:8px;margin:6px 0"><input type="checkbox" class="ann-school-check" value="apms"> Aziz Public Model School</label><label style="display:flex;align-items:center;gap:8px;margin:6px 0"><input type="checkbox" class="ann-school-check" value="kids"> Aziz Kids</label><label style="display:flex;align-items:center;gap:8px;margin:6px 0"><input type="checkbox" class="ann-school-check" value="gps3"> GPS Kothay Wala No. 3</label><label style="display:flex;align-items:center;gap:8px;margin:6px 0"><input type="checkbox" class="ann-school-check" value="gpsmw"> GPS Munshi Wala</label><label style="display:flex;align-items:center;gap:8px;margin:6px 0"><input type="checkbox" id="ann-all-schools"> <strong>📢 ALL SCHOOLS</strong></label></div></div>
+        <div class="admin-form-group"><label>Assign Faculty Member (Optional)</label><select id="ann-faculty"><option value="">-- No specific faculty member --</option></select><div style="font-size:12px;color:var(--text-light);margin-top:6px">Select a teacher/staff member to highlight them in this announcement</div></div>
+        <button class="admin-save-btn" onclick="createAnnouncement()">&#10133; Post Announcement</button>
+        
+        <h4 style="font-size:15px;font-weight:700;color:var(--navy);margin:24px 0 16px 0;padding-bottom:12px;border-bottom:2px solid var(--gold)">📋 Active Announcements</h4>
+        <div id="ann-list" style="max-height:300px;overflow-y:auto"><p style="font-size:14px;color:var(--text-light);text-align:center;padding:20px">No announcements yet.</p></div>
+      </div>
+
+      <!-- THEME SETTINGS -->
+      <div class="admin-tab-content" id="tab-theme-settings">
+        <h4 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--gold)">🎨 Customize Colors</h4>
+        <p style="font-size:13px;color:var(--text-mid);margin-bottom:20px">Change your website colors. Changes apply instantly across all pages.</p>
+        <div class="form-row">
+          <div class="admin-form-group"><label>Primary Gold Color</label><div style="display:flex;gap:8px"><input type="color" id="theme-gold" value="#C9922A"><input type="text" id="theme-gold-text" placeholder="#C9922A" style="flex:1;max-width:120px"></div></div>
+          <div class="admin-form-group"><label>Light Gold</label><div style="display:flex;gap:8px"><input type="color" id="theme-gold-light" value="#E8B84B"><input type="text" id="theme-gold-light-text" placeholder="#E8B84B" style="flex:1;max-width:120px"></div></div>
+        </div>
+        <div class="form-row">
+          <div class="admin-form-group"><label>Primary Navy</label><div style="display:flex;gap:8px"><input type="color" id="theme-navy" value="#0D1B3E"><input type="text" id="theme-navy-text" placeholder="#0D1B3E" style="flex:1;max-width:120px"></div></div>
+          <div class="admin-form-group"><label>Navy Mid</label><div style="display:flex;gap:8px"><input type="color" id="theme-navy-mid" value="#162447"><input type="text" id="theme-navy-mid-text" placeholder="#162447" style="flex:1;max-width:120px"></div></div>
+        </div>
+        <div class="form-row">
+          <div class="admin-form-group"><label>Navy Light</label><div style="display:flex;gap:8px"><input type="color" id="theme-navy-light" value="#1E3460"><input type="text" id="theme-navy-light-text" placeholder="#1E3460" style="flex:1;max-width:120px"></div></div>
+          <div class="admin-form-group"><label>Text Dark</label><div style="display:flex;gap:8px"><input type="color" id="theme-text-dark" value="#0D1B3E"><input type="text" id="theme-text-dark-text" placeholder="#0D1B3E" style="flex:1;max-width:120px"></div></div>
+        </div>
+        <div class="form-row">
+          <div class="admin-form-group"><label>Cream / Background</label><div style="display:flex;gap:8px"><input type="color" id="theme-cream" value="#FAF6EE"><input type="text" id="theme-cream-text" placeholder="#FAF6EE" style="flex:1;max-width:120px"></div></div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:20px"><button class="admin-save-btn" onclick="saveThemeColors()">💾 Save Colors</button><button class="admin-save-btn" style="background:#999;color:white" onclick="resetThemeToDefault()">↻ Reset to Default</button></div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="admin-tab-content" id="tab-about-group">
+        <div class="admin-form-group"><label>About Aziz Group of Schools</label><textarea id="ag-about" style="min-height:180px"></textarea></div>
+        <button class="admin-save-btn" onclick="saveAbout()">&#128190; Save</button>
+      </div>
+
+      <!-- ACTION HISTORY -->
+      <div class="admin-tab-content" id="tab-action-history">
+        <div style="background:rgba(201,146,42,0.08);border:1px solid rgba(201,146,42,0.3);border-radius:12px;padding:16px;margin-bottom:20px">
+          <strong style="color:var(--navy)">📋 Admin Action Log</strong>
+          <p style="font-size:13px;color:var(--text-mid);margin-top:8px">All changes made by administrators are recorded here permanently in the database. This helps maintain a complete audit trail of all modifications to school content.</p>
+        </div>
+        <div id="history-list" style="max-height:600px;overflow-y:auto"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const AU='admin', AP='aziz2025';
+let teachers=[], tPhoto='', dPhoto='';
+let director={name:'Muhammad Aqil',edu:'D Pharm - BZU, Multan',bio:'With over 25 years of experience in education, our Director founded the Aziz Group with a singular vision: to bring quality education within reach of every child in our community. His unwavering commitment to academic excellence and moral development has been the driving force behind the group’s growth and impact.',photo:''};
+let eCfg={key:'',svc:'',tpl:'',email:''};let announcements=[];
+let schoolContacts={apms:{phone:'',email:'',location:''},kids:{phone:'',email:'',location:''},gps3:{phone:'',email:'',location:''},gpsmw:{phone:'',email:'',location:''}};
+let schoolAdmissionsStatus={apms:false,kids:false,gps3:false,gpsmw:false};const sData={};
+['apms','kids','gps3','gpsmw'].forEach(s=>{sData[s]={short:(document.getElementById(s+'-desc-short')||{}).textContent||'',about:(document.getElementById(s+'-about')||{}).textContent||'',programs:(document.getElementById(s+'-programs')||{}).textContent||'',admissions:(document.getElementById(s+'-admissions')||{}).textContent||''};});
+
+function showMain(){document.getElementById('mainContent').classList.remove('hidden');document.querySelectorAll('.school-detail').forEach(d=>d.classList.remove('active'));window.scrollTo({top:0,behavior:'smooth'});return false;}
+function showSchool(id){document.getElementById('mainContent').classList.add('hidden');document.querySelectorAll('.school-detail').forEach(d=>d.classList.remove('active'));document.getElementById('detail-'+id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});return false;}
+function openLogin(){document.getElementById('loginModal').classList.add('active');}
+function closeLogin(){document.getElementById('loginModal').classList.remove('active');document.getElementById('loginError').classList.remove('show');document.getElementById('loginUser').value='';document.getElementById('loginPass').value='';}
+function doLogin(){const u=document.getElementById('loginUser').value.trim(),p=document.getElementById('loginPass').value;if(u===AU&&p===AP){closeLogin();openAdmin();}else document.getElementById('loginError').classList.add('show');}
+function openAdmin(){populateAdmin();document.getElementById('adminPanel').classList.add('active');}
+function closeAdmin(){document.getElementById('adminPanel').classList.remove('active');}
+
+function populateAdmin(){
+  const s=document.getElementById('desc-school').value;
+  document.getElementById('desc-short').value=sData[s].short;
+  document.getElementById('desc-about').value=sData[s].about;
+  document.getElementById('desc-programs').value=sData[s].programs;
+  document.getElementById('adm-text').value=sData[document.getElementById('adm-school').value].admissions;
+  document.getElementById('adm-open').checked=schoolAdmissionsStatus[document.getElementById('adm-school').value]||false;
+  document.getElementById('ci-phone').value=document.getElementById('contact-phone').textContent;
+  document.getElementById('ci-email').value=document.getElementById('contact-email').textContent;
+  document.getElementById('ag-about').value=document.getElementById('about-desc').textContent;
+  document.getElementById('dir-name').value=director.name;
+  document.getElementById('dir-edu').value=director.edu;
+  document.getElementById('dir-bio').value=director.bio;
+  if(director.photo){setImgPreview('dir-img-prev','dir-emoji-prev',director.photo);}
+  document.getElementById('ejs-key').value=eCfg.key;
+  document.getElementById('ejs-svc').value=eCfg.svc;
+  document.getElementById('ejs-tpl').value=eCfg.tpl;
+  document.getElementById('ejs-email').value=eCfg.email;
+  updateEmailStatus();loadFacilities();renderStaffAdmin();renderAllSchoolFaculty();loadSchoolContact();renderAnnouncements();
+}
+document.getElementById('desc-school').addEventListener('change',function(){const s=this.value;document.getElementById('desc-short').value=sData[s].short;document.getElementById('desc-about').value=sData[s].about;document.getElementById('desc-programs').value=sData[s].programs;});
+document.getElementById('adm-school').addEventListener('change',function(){document.getElementById('adm-text').value=sData[this.value].admissions;});
+document.getElementById('cf-school').addEventListener('change',function(){const school=this.value;if(school&&!schoolAdmissionsStatus[school]){document.getElementById('adm-closed-msg').style.display='block';}else{document.getElementById('adm-closed-msg').style.display='none';}});
+
+function saveDescriptions(){const s=document.getElementById('desc-school').value;sData[s].short=document.getElementById('desc-short').value;sData[s].about=document.getElementById('desc-about').value;sData[s].programs=document.getElementById('desc-programs').value;const se=document.getElementById(s+'-desc-short');if(se)se.textContent=sData[s].short;const ae=document.getElementById(s+'-about');if(ae)ae.textContent=sData[s].about;const pe=document.getElementById(s+'-programs');if(pe)pe.textContent=sData[s].programs;logAdminAction('SCHOOL_DESCRIPTION_UPDATED',`Updated descriptions for school: ${s}`,{school:s,shortDesc:sData[s].short.substring(0,50)+'...'});showNotice();syncToSupabase();}
+function saveAdmissions(){const s=document.getElementById('adm-school').value;sData[s].admissions=document.getElementById('adm-text').value;schoolAdmissionsStatus[s]=document.getElementById('adm-open').checked;const el=document.getElementById(s+'-admissions');if(el)el.textContent=sData[s].admissions;logAdminAction('ADMISSIONS_STATUS_UPDATED',`Updated admissions for ${s}: ${schoolAdmissionsStatus[s]?'OPEN':'CLOSED'}`,{school:s,status:schoolAdmissionsStatus[s]?'OPEN':'CLOSED'});updateContactFormSchools();showNotice();syncToSupabase();}
+function loadAdmissionsStatus(){const s=document.getElementById('adm-school').value;document.getElementById('adm-text').value=sData[s].admissions;document.getElementById('adm-open').checked=schoolAdmissionsStatus[s]||false;}
+function saveContact(){const ph=document.getElementById('ci-phone').value,em=document.getElementById('ci-email').value;document.getElementById('contact-phone').textContent=ph;document.getElementById('contact-email').textContent=em;document.getElementById('footer-phone').textContent=ph;document.getElementById('footer-email').textContent=em;logAdminAction('CONTACT_INFO_UPDATED','Updated main contact information',{phone:ph,email:em});showNotice();syncToSupabase();}
+
+function loadSchoolContact(){const s=document.getElementById('sch-contact-school').value;document.getElementById('sch-phone').value=schoolContacts[s].phone;document.getElementById('sch-email').value=schoolContacts[s].email;document.getElementById('sch-location').value=schoolContacts[s].location;}
+
+function saveSchoolContact(){const s=document.getElementById('sch-contact-school').value;schoolContacts[s].phone=document.getElementById('sch-phone').value;schoolContacts[s].email=document.getElementById('sch-email').value;schoolContacts[s].location=document.getElementById('sch-location').value;logAdminAction('SCHOOL_CONTACT_UPDATED',`Updated contact for school: ${s}`,{school:s,phone:schoolContacts[s].phone,email:schoolContacts[s].email});showNotice();syncToSupabase();}
+function saveAbout(){document.getElementById('about-desc').textContent=document.getElementById('ag-about').value;logAdminAction('ABOUT_TEXT_UPDATED','Updated school group about section',{text:document.getElementById('ag-about').value.substring(0,100)+'...'});showNotice();syncToSupabase();}
+
+function setImgPreview(imgId,emojiId,src){const img=document.getElementById(imgId),em=document.getElementById(emojiId);img.src=src;img.style.display='block';em.style.display='none';}
+function handleDirPhoto(input){if(!input.files||!input.files[0])return;const r=new FileReader();r.onload=e=>{dPhoto=e.target.result;setImgPreview('dir-img-prev','dir-emoji-prev',dPhoto);};r.readAsDataURL(input.files[0]);}
+function handleTeacherPhoto(input){if(!input.files||!input.files[0])return;const r=new FileReader();r.onload=e=>{tPhoto=e.target.result;setImgPreview('t-img-prev','t-emoji-prev',tPhoto);};r.readAsDataURL(input.files[0]);}
+
+function saveDirector(){director.name=document.getElementById('dir-name').value;director.edu=document.getElementById('dir-edu').value;director.bio=document.getElementById('dir-bio').value;if(dPhoto){director.photo=dPhoto;setImgPreview('director-img','director-emoji',director.photo);}document.getElementById('director-name').textContent=director.name;document.getElementById('director-edu').textContent=director.edu;document.getElementById('director-bio').textContent=director.bio;logAdminAction('DIRECTOR_INFO_UPDATED',`Updated director information: ${director.name}`,{name:director.name,education:director.edu,photoUpdated:!!dPhoto});showNotice();syncToSupabase();}
+
+function addTeacher(){const n=document.getElementById('t-name').value.trim(),r=document.getElementById('t-role').value.trim(),schools=Array.from(document.querySelectorAll('.t-school-check:checked')).map(c=>c.value);if(!n||!r){alert('Please enter name and role.');return;}if(!schools.length){alert('Please select at least one school.');return;}teachers.push({id:Date.now(),name:n,role:r,edu:document.getElementById('t-edu').value.trim(),schools:schools,photo:tPhoto});['t-name','t-role','t-edu'].forEach(id=>document.getElementById(id).value='');document.querySelectorAll('.t-school-check').forEach(c=>c.checked=false);document.getElementById('t-img-prev').style.display='none';document.getElementById('t-emoji-prev').style.display='block';document.getElementById('t-file').value='';tPhoto='';renderStaffAdmin();renderAllSchoolFaculty();logAdminAction('TEACHER_ADDED',`Added new teacher: ${n}`,{name:n,role:r,schools:schools,hasPhoto:!!tPhoto});showNotice();syncToSupabase();}
+function removeTeacher(id){const teacher=teachers.find(t=>t.id===id);teachers=teachers.filter(t=>t.id!==id);logAdminAction('TEACHER_REMOVED',`Removed teacher: ${teacher.name}`,{name:teacher.name,role:teacher.role});renderStaffAdmin();renderAllSchoolFaculty();showNotice();syncToSupabase();}
+
+function renderSchoolFaculty(schoolId){const g=document.getElementById(schoolId+'-faculty-list');if(!g)return;const schoolTeachers=teachers.filter(t=>t.schools&&t.schools.includes(schoolId));if(!schoolTeachers.length){g.innerHTML='<p style="font-size:14px;color:var(--text-light);text-align:center;padding:20px">Faculty information coming soon.</p>';return;}g.innerHTML=schoolTeachers.map(t=>`<div class="teacher-card"><div class="teacher-photo">${t.photo?`<img src="${t.photo}" alt="${t.name}">`:`<span>&#128100;</span>`}</div><h4>${t.name}</h4><div class="t-role">${t.role}</div>${t.edu?`<div class="t-edu">${t.edu}</div>`:''}</div>`).join('');}function renderAllSchoolFaculty(){['apms','kids','gps3','gpsmw'].forEach(s=>renderSchoolFaculty(s));}
+
+function renderStaffAdmin(){const el=document.getElementById('staff-admin-list');if(!teachers.length){el.innerHTML='<p style="font-size:14px;color:var(--text-light);text-align:center;padding:20px">No faculty added yet.</p>';return;}const schoolNames={apms:'APMS',kids:'Aziz Kids',gps3:'GPS KW#3',gpsmw:'GPS MW'};el.innerHTML=teachers.map(t=>`<div class="staff-admin-card"><div class="staff-admin-photo">${t.photo?`<img src="${t.photo}" alt="${t.name}">`:`<span>&#128100;</span>`}</div><div class="staff-admin-info"><strong>${t.name}</strong><em>${t.role}</em><span>${t.edu||''}</span><div style="font-size:11px;color:var(--gold);margin-top:6px;font-weight:600">📍 ${t.schools?t.schools.map(s=>schoolNames[s]||s).join(', '):'No schools'}</div></div><button class="remove-btn" onclick="removeTeacher(${t.id})">Remove</button></div>`).join('');};
+
+function loadFacilities(){const s=document.getElementById('fac-school').value,items=Array.from(document.getElementById(s+'-facilities-list').querySelectorAll('.removable-item')).map(e=>e.textContent.trim()),el=document.getElementById('fac-list');el.innerHTML='';items.forEach((item,i)=>{const d=document.createElement('div');d.className='removable-item';d.innerHTML=`<span>${item}</span><button class="remove-btn" onclick="removeFacility(${i})">Remove</button>`;el.appendChild(d);});}
+function addFacility(){const s=document.getElementById('fac-school').value,val=document.getElementById('fac-input').value.trim();if(!val)return;const d=document.createElement('div');d.className='removable-item';d.textContent=val;document.getElementById(s+'-facilities-list').appendChild(d);document.getElementById('fac-input').value='';loadFacilities();logAdminAction('FACILITY_ADDED',`Added facility for ${s}: ${val}`,{school:s,facility:val});showNotice();}
+function removeFacility(i){const s=document.getElementById('fac-school').value,items=document.getElementById(s+'-facilities-list').querySelectorAll('.removable-item');const facility=items[i]?items[i].textContent.trim():'';if(items[i])items[i].remove();loadFacilities();logAdminAction('FACILITY_REMOVED',`Removed facility from ${s}: ${facility}`,{school:s,facility:facility});showNotice();}
+
+function switchTab(name,btn){document.querySelectorAll('.admin-tab-content').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));document.getElementById('tab-'+name).classList.add('active');if(btn)btn.classList.add('active');if(name==='facilities')loadFacilities();if(name==='announcements'){populateFacultySelector();renderAnnouncements();}if(name==='action-history'){loadAdminActions();renderAdminActions();}if(name==='theme-settings')loadTheme();}
+
+function saveEmailCfg(){eCfg.key=document.getElementById('ejs-key').value.trim();eCfg.svc=document.getElementById('ejs-svc').value.trim();eCfg.tpl=document.getElementById('ejs-tpl').value.trim();eCfg.email=document.getElementById('ejs-email').value.trim();if(eCfg.key)emailjs.init(eCfg.key);logAdminAction('EMAIL_CONFIG_UPDATED','Updated EmailJS configuration',{email:eCfg.email,serviceConfigured:!!eCfg.svc});updateEmailStatus();showNotice();syncToSupabase();}
+function updateEmailStatus(){const s=document.getElementById('ecfg-status'),n=document.getElementById('emailjs-notice');if(eCfg.key&&eCfg.svc&&eCfg.tpl){s.className='config-status ok';s.textContent='\u2713 Email notifications are active!';if(n)n.style.display='none';}else{s.className='config-status warn';s.textContent='\u26a0 Not configured yet';if(n)n.style.display='block';}}
+
+function createAnnouncement(){const titleEn=document.getElementById('ann-title-en').value.trim(),titleUr=document.getElementById('ann-title-ur').value.trim(),msgEn=document.getElementById('ann-msg-en').value.trim(),msgUr=document.getElementById('ann-msg-ur').value.trim(),priority=document.getElementById('ann-priority').value,facultyId=document.getElementById('ann-faculty').value;if(!titleEn||!msgEn){alert('Title and message in English are required.');return;}const schools=Array.from(document.querySelectorAll('.ann-school-check:checked')).map(c=>c.value);if(document.getElementById('ann-all-schools').checked)schools.push('all');if(!schools.length){alert('Select at least one school or "All Schools".');return;}const ann={id:Date.now(),title_en:titleEn,title_ur:titleUr,content_en:msgEn,content_ur:msgUr,priority:priority,schools:schools,faculty_member:facultyId||null,createdAt:new Date().toLocaleString()};announcements.unshift(ann);document.getElementById('ann-title-en').value='';document.getElementById('ann-title-ur').value='';document.getElementById('ann-msg-en').value='';document.getElementById('ann-msg-ur').value='';document.querySelectorAll('.ann-school-check').forEach(c=>c.checked=false);document.getElementById('ann-all-schools').checked=false;document.getElementById('ann-priority').value='normal';document.getElementById('ann-faculty').value='';const facultyName=facultyId?teachers.find(t=>t.id==facultyId)?.name:'none';logAdminAction('ANNOUNCEMENT_CREATED',`Created new announcement: ${titleEn}`,{title:titleEn,priority:priority,schools:schools,hasUrdu:!!titleUr,faculty:facultyName});renderAnnouncements();showNotice();syncToSupabase();}
+
+function renderAnnouncements(){const el=document.getElementById('ann-list');if(!announcements.length){el.innerHTML='<p style="font-size:14px;color:var(--text-light);text-align:center;padding:20px">No announcements yet.</p>';return;}el.innerHTML=announcements.map(a=>{const faculty=a.faculty_member?teachers.find(t=>t.id==a.faculty_member):null;return `<div style="background:var(--cream);border-left:4px solid ${a.priority==='urgent'?'#dc3545':a.priority==='high'?'#ff9800':'#28a745'};padding:12px;margin:8px 0;border-radius:4px"><div style="display:flex;justify-content:space-between;align-items:start"><div><strong>${a.title_en}</strong>${a.title_ur?'<div style="font-size:12px;color:#666">'+a.title_ur+'</div>':''}<div style="font-size:12px;color:#999;margin-top:4px">${a.schools.includes('all')?'📢 All Schools':a.schools.join(', ')}</div>${faculty?`<div style="font-size:12px;color:var(--gold);margin-top:4px;font-weight:600">👤 ${faculty.name} (${faculty.role})</div>`:''}<div style="font-size:11px;color:#999">${a.createdAt}</div></div><button onclick="removeAnnouncement(${a.id})" style="background:none;border:none;color:#dc3545;cursor:pointer;font-size:16px">✕</button></div></div>`}).join('');}
+
+function removeAnnouncement(id){const ann=announcements.find(a=>a.id===id);announcements=announcements.filter(a=>a.id!==id);logAdminAction('ANNOUNCEMENT_DELETED',`Removed announcement: ${ann.title_en}`,{title:ann.title_en});renderAnnouncements();showNotice();syncToSupabase();}
+
+function saveThemeColors(){const colors={gold:document.getElementById('theme-gold').value,goldLight:document.getElementById('theme-gold-light').value,navy:document.getElementById('theme-navy').value,navyMid:document.getElementById('theme-navy-mid').value,navyLight:document.getElementById('theme-navy-light').value,textDark:document.getElementById('theme-text-dark').value,cream:document.getElementById('theme-cream').value};localStorage.setItem('customTheme',JSON.stringify(colors));logAdminAction('THEME_COLORS_CHANGED','Updated website theme colors',{colors:colors});applyTheme(colors);showNotice();syncToSupabase();}
+
+function resetThemeToDefault(){const defaultColors={gold:'#C9922A',goldLight:'#E8B84B',navy:'#0D1B3E',navyMid:'#162447',navyLight:'#1E3460',textDark:'#0D1B3E',cream:'#FAF6EE'};document.getElementById('theme-gold').value=defaultColors.gold;document.getElementById('theme-gold-light').value=defaultColors.goldLight;document.getElementById('theme-navy').value=defaultColors.navy;document.getElementById('theme-navy-mid').value=defaultColors.navyMid;document.getElementById('theme-navy-light').value=defaultColors.navyLight;document.getElementById('theme-text-dark').value=defaultColors.textDark;document.getElementById('theme-cream').value=defaultColors.cream;localStorage.removeItem('customTheme');applyTheme(defaultColors);showNotice();}
+
+function applyTheme(colors){document.documentElement.style.setProperty('--gold',colors.gold);document.documentElement.style.setProperty('--gold-light',colors.goldLight);document.documentElement.style.setProperty('--navy',colors.navy);document.documentElement.style.setProperty('--navy-mid',colors.navyMid);document.documentElement.style.setProperty('--navy-light',colors.navyLight);document.documentElement.style.setProperty('--text-dark',colors.textDark);document.documentElement.style.setProperty('--cream',colors.cream);}
+
+function loadTheme(){const saved=localStorage.getItem('customTheme');if(saved){const colors=JSON.parse(saved);applyTheme(colors);document.getElementById('theme-gold').value=colors.gold;document.getElementById('theme-gold-light').value=colors.goldLight;document.getElementById('theme-navy').value=colors.navy;document.getElementById('theme-navy-mid').value=colors.navyMid;document.getElementById('theme-navy-light').value=colors.navyLight;document.getElementById('theme-text-dark').value=colors.textDark;document.getElementById('theme-cream').value=colors.cream;}}
+
+async function sendContactForm(){const name=document.getElementById('cf-name').value.trim(),phone=document.getElementById('cf-phone').value.trim(),school=document.getElementById('cf-school').value,message=document.getElementById('cf-message').value.trim(),alertEl=document.getElementById('form-alert'),btn=document.getElementById('send-btn'),txt=document.getElementById('send-txt');alertEl.className='form-alert';alertEl.style.display='none';if(!name||!message){alertEl.className='form-alert error';alertEl.textContent='Please fill in your name and message.';return;}if(!eCfg.key||!eCfg.svc||!eCfg.tpl){alertEl.className='form-alert error';alertEl.textContent='Email not configured. Please contact the school by phone or visit in person.';return;}btn.disabled=true;txt.textContent='Sending...';try{await emailjs.send(eCfg.svc,eCfg.tpl,{from_name:name,phone:phone||'Not provided',school_name:school,message:message,to_email:eCfg.email});alertEl.className='form-alert success';alertEl.textContent='\u2713 Message sent! We will contact you soon.';['cf-name','cf-phone','cf-message'].forEach(id=>document.getElementById(id).value='');}catch(e){alertEl.className='form-alert error';alertEl.textContent='Failed to send. Please try again or contact us directly.';}btn.disabled=false;txt.textContent='\u2709 Send Message';}
+
+async function syncToSupabase(){
+  const allData={
+    id:1,
+    teachers:JSON.stringify(teachers),
+    director:JSON.stringify(director),
+    email_config:JSON.stringify(eCfg),
+    school_descriptions:JSON.stringify(sData),
+    announcements:JSON.stringify(announcements),
+    school_contacts:JSON.stringify(schoolContacts),
+    admissions_status:JSON.stringify(schoolAdmissionsStatus),
+    theme_colors:JSON.stringify({gold:document.documentElement.style.getPropertyValue('--gold')||'#C9922A',goldLight:document.documentElement.style.getPropertyValue('--gold-light')||'#E8B84B',navy:document.documentElement.style.getPropertyValue('--navy')||'#0D1B3E',navyMid:document.documentElement.style.getPropertyValue('--navy-mid')||'#162447',navyLight:document.documentElement.style.getPropertyValue('--navy-light')||'#1E3460',textDark:document.documentElement.style.getPropertyValue('--text-dark')||'#0D1B3E',cream:document.documentElement.style.getPropertyValue('--cream')||'#FAF6EE'})
+  };
+  
+  // Save to localStorage as backup
+  localStorage.setItem('aziz_schools_data',JSON.stringify(allData));
+  
+  // Sync to Supabase if available
+  if(!window.supabase_client)return;
+  try{
+    const res=await window.supabase_client.from('school_data').upsert(allData,{onConflict:'id'}).select();
+    if(res.error){
+      console.warn('⚠️ Supabase sync error:',res.error.message);
+      return false;
+    }
+    console.log('✅ Data synced to Supabase');
+    return true;
+  }catch(e){
+    console.warn('❌ Sync exception:',e.message);
+    return false;
+  }
+}
+
+// Load data from Supabase or localStorage
+async function loadDataFromSupabase(){
+  // First try Supabase
+  if(window.supabase_client){
+    try{
+      const res=await window.supabase_client.from('school_data').select('*').eq('id',1).single();
+      if(res.data){
+        console.log('✅ Loaded data from Supabase');
+        // Parse all JSON fields
+        teachers=JSON.parse(res.data.teachers||'[]');
+        // Convert old teacher format (single school string) to new format (schools array)
+        teachers=teachers.map(t=>{if(t.school&&!t.schools){return {...t,schools:t.school?[t.school]:[],school:undefined};}return t;});
+        director=JSON.parse(res.data.director||'{}');
+        eCfg=JSON.parse(res.data.email_config||'{}');
+        Object.assign(sData,JSON.parse(res.data.school_descriptions||'{}'));
+        announcements=JSON.parse(res.data.announcements||'[]');
+        schoolContacts=JSON.parse(res.data.school_contacts||'{}');
+        schoolAdmissionsStatus=JSON.parse(res.data.admissions_status||'{}');
+        const themeColors=JSON.parse(res.data.theme_colors||'{}');
+        if(themeColors.gold)applyTheme(themeColors);
+        return true;
+      }
+    }catch(e){
+      console.warn('⚠️ Supabase load failed, trying localStorage:',e.message);
+    }
+  }
+  
+  // Fallback to localStorage
+  const saved=localStorage.getItem('aziz_schools_data');
+  if(saved){
+    try{
+      const data=JSON.parse(saved);
+      teachers=JSON.parse(data.teachers||'[]');
+      // Convert old teacher format (single school string) to new format (schools array)
+      teachers=teachers.map(t=>{if(t.school&&!t.schools){return {...t,schools:t.school?[t.school]:[],school:undefined};}return t;});
+      director=JSON.parse(data.director||'{}');
+      eCfg=JSON.parse(data.email_config||'{}');
+      Object.assign(sData,JSON.parse(data.school_descriptions||'{}'));
+      announcements=JSON.parse(data.announcements||'[]');
+      schoolContacts=JSON.parse(data.school_contacts||'{}');
+      schoolAdmissionsStatus=JSON.parse(data.admissions_status||'{}');
+      const themeColors=JSON.parse(data.theme_colors||'{}');
+      if(themeColors.gold)applyTheme(themeColors);
+      console.log('✅ Loaded data from localStorage');
+      return true;
+    }catch(e){
+      console.warn('⚠️ localStorage load failed:',e.message);
+    }
+  }
+  
+  console.log('ℹ️ No saved data found, using defaults');
+  return false;
+}
+
+function showNotice(){const n=document.getElementById('adminNotice');n.classList.add('show');setTimeout(()=>n.classList.remove('show'),3000);}
+
+// Admin Action Logging Functions
+let adminActions=[];
+
+// Update contact form schools based on admissions status
+function updateContactFormSchools(){
+  const schoolSelect=document.getElementById('cf-school');
+  const options=schoolSelect.querySelectorAll('option');
+  const closedMsg=document.getElementById('adm-closed-msg');
+  let hasOpenSchools=false;
+  
+  options.forEach(option=>{
+    const schoolKey=option.value;
+    if(schoolAdmissionsStatus[schoolKey]===true){
+      option.style.display='block';
+      hasOpenSchools=true;
+    }else{
+      option.style.display='none';
+    }
+  });
+  
+  // If selected school is closed, show message
+  const currentSchool=schoolSelect.value;
+  if(currentSchool&&!schoolAdmissionsStatus[currentSchool]){
+    closedMsg.style.display='block';
+  }else{
+    closedMsg.style.display='none';
+  }
+  
+  // Select first available open school
+  if(!schoolAdmissionsStatus[currentSchool]){
+    const openSchool=Array.from(options).find(o=>schoolAdmissionsStatus[o.value]===true);
+    if(openSchool)schoolSelect.value=openSchool.value;
+  }
+}
+
+// Populate faculty selector in announcements
+function populateFacultySelector(){
+  const select=document.getElementById('ann-faculty');
+  if(!select)return;
+  
+  const currentValue=select.value;
+  const options=['<option value="">-- No specific faculty member --</option>'];
+  
+  teachers.forEach(t=>{
+    options.push(`<option value="${t.id}">${t.name} (${t.role})</option>`);
+  });
+  
+  select.innerHTML=options.join('');
+  select.value=currentValue;
+}
+
+async function logAdminAction(actionType,description,details={}){
+  const action={
+    action_type:actionType,
+    description:description,
+    action_details:details,
+    status:'success'
+  };
+  
+  // Add to local array
+  adminActions.unshift({...action,timestamp:new Date().toLocaleString()});
+  
+  // Save to Supabase if connected
+  if(window.supabase_client){
+    try{
+      const {error}=await window.supabase_client.from('admin_actions').insert([action]);
+      if(error){
+        console.warn('❌ Failed to log action:',error.message);
+        action.status='failed';
+      }else{
+        console.log('✅ Action logged:',actionType);
+      }
+    }catch(e){
+      console.warn('❌ Logging error:',e.message);
+      action.status='failed';
+    }
+  }
+  
+  // Update history display if visible
+  renderAdminActions();
+}
+
+async function loadAdminActions(){
+  if(!window.supabase_client)return;
+  try{
+    const {data,error}=await window.supabase_client
+      .from('admin_actions')
+      .select('*')
+      .order('timestamp',{ascending:false})
+      .limit(100);
+    
+    if(data){
+      adminActions=data.map(a=>({...a,timestamp:new Date(a.timestamp).toLocaleString()}));
+      renderAdminActions();
+      console.log('✅ Loaded',adminActions.length,'admin actions');
+    }
+  }catch(e){
+    console.warn('⚠️ Could not load admin actions:',e.message);
+  }
+}
+
+function renderAdminActions(){
+  const el=document.getElementById('history-list');
+  if(!el)return;
+  
+  if(!adminActions.length){
+    el.innerHTML='<p style="font-size:14px;color:var(--text-light);text-align:center;padding:20px">No admin actions recorded yet.</p>';
+    return;
+  }
+  
+  el.innerHTML=adminActions.map(a=>{
+    const statusColor=a.status==='success'?'#28a745':a.status==='failed'?'#dc3545':'#ff9800';
+    return `<div style="background:var(--cream);border-left:4px solid ${statusColor};padding:14px;margin:10px 0;border-radius:6px">
+      <div style="display:flex;justify-content:space-between;align-items:start">
+        <div style="flex:1">
+          <strong style="color:var(--navy)">${a.action_type}</strong>
+          <div style="font-size:13px;color:var(--text-mid);margin-top:4px">${a.description}</div>
+          <div style="font-size:11px;color:var(--text-light);margin-top:6px">📅 ${a.timestamp}</div>
+          ${a.action_details && Object.keys(a.action_details).length>0?`<details style="font-size:12px;margin-top:8px"><summary style="cursor:pointer;color:var(--gold)">Details</summary><pre style="background:white;padding:8px;border-radius:4px;overflow-x:auto">${JSON.stringify(a.action_details,null,2)}</pre></details>`:''}
+        </div>
+        <span style="padding:4px 10px;border-radius:4px;font-size:11px;font-weight:600;color:white;background:${statusColor}">${a.status.toUpperCase()}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+renderAllSchoolFaculty();updateEmailStatus();loadTheme();renderAnnouncements();updateContactFormSchools();
+document.getElementById('loginModal').addEventListener('click',function(e){if(e.target===this)closeLogin();});
+document.getElementById('adminPanel').addEventListener('click',function(e){if(e.target===this)closeAdmin();});
+
+// Color picker sync
+['gold','gold-light','navy','navy-mid','navy-light','text-dark','cream'].forEach(c=>{
+  document.getElementById('theme-'+c).addEventListener('change',function(){document.getElementById('theme-'+c+'-text').value=this.value;});
+  document.getElementById('theme-'+c+'-text').addEventListener('change',function(){document.getElementById('theme-'+c).value=this.value;});
+});
+
+// Supabase Integration - Initialize with user credentials
+if(typeof window.supabase !== 'undefined'){
+  try{
+    window.supabase_client = window.supabase.createClient(
+      'https://vkaxsaspzydzgoucufby.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrYXhzYXNwenlkemdvdWN1ZmJ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNDgzNjgsImV4cCI6MjA5MjYyNDM2OH0.VTdlS6yEA6yJrhdnMQtZc4WThGQP1-YBSCzqNNWQ_zc'
+    );
+    console.log('✓ Supabase connected');
+    loadDataFromSupabase().then(()=>{
+      renderAllSchoolFaculty();updateEmailStatus();loadTheme();renderAnnouncements();loadAdminActions();updateContactFormSchools();
+    });
+  }catch(e){
+    console.warn('Supabase connection error:',e.message);
+  }
+}
+
+// Debug & Test Functions
+window.testSync = async function(){
+  console.log('🔄 Testing Supabase sync...');
+  if(!window.supabase_client){
+    console.error('❌ Supabase not connected');
+    return;
+  }
+  try{
+    const result = await window.supabase_client.from('school_data').select('*').eq('id',1).single();
+    if(result.data){
+      console.log('✓ Data found in Supabase:',result.data);
+      return result.data;
+    }else{
+      console.log('ℹ No data in database yet (first save will create it)');
+      return null;
+    }
+  }catch(e){
+    console.error('❌ Error checking database:',e.message);
+  }
+};
+
+window.viewAllData = function(){
+  return {
+    teachers,director,eCfg,sData,announcements,schoolContacts,schoolAdmissionsStatus
+  };
+};
+
+window.checkSync = function(){
+  console.log('=== SYNC STATUS ===');
+  console.log('Supabase connected:', !!window.supabase_client);
+  console.log('Teachers count:', teachers.length);
+  console.log('Announcements count:', announcements.length);
+  console.log('Type testSync() to check database');
+  console.log('Type viewAllData() to see all data');
+};
+console.log('%c✓ Aziz Schools Ready - Type checkSync() to see status','color:green;font-weight:bold;font-size:14px');
+</script>
+</body>
+</html>
