@@ -434,7 +434,7 @@ setTimeout(()=>{closeWelcomeCard()},5000);
         <div class="director-info">
           <div class="director-badge">&#10022; Director</div>
           <h3 id="director-name">Muhammad Aqil</h3>
-          <div class="dir-edu" id="director-edu">M.Ed, B.Sc &mdash; University of Education, Multan</div>
+          <div class="dir-edu" id="director-edu">D-Pharm &mdash; BZU , Multan</div>
           <p id="director-bio">With over 25 years of experience in education, our Director founded the Aziz Group with a singular vision: to bring quality education within reach of every child in our community. His unwavering commitment to academic excellence and moral development has been the driving force behind the group's growth and impact.</p>
         </div>
       </div>
@@ -1148,13 +1148,15 @@ if(typeof window.supabase !== 'undefined'){
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrYXhzYXNwenlkemdvdWN1ZmJ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNDgzNjgsImV4cCI6MjA5MjYyNDM2OH0.VTdlS6yEA6yJrhdnMQtZc4WThGQP1-YBSCzqNNWQ_zc'
     );
     console.log('✓ Supabase connected');
-    loadDataFromSupabase().then(()=>{
-      renderAllSchoolFaculty();updateEmailStatus();loadTheme();renderAnnouncements();loadAdminActions();updateContactFormSchools();
-    });
   }catch(e){
-    console.warn('Supabase connection error:',e.message);
+    console.warn('⚠️ Supabase connection error:',e.message);
   }
 }
+
+// Load data on page load - always attempt this
+loadDataFromSupabase().then(()=>{
+  renderAllSchoolFaculty();updateEmailStatus();loadTheme();renderAnnouncements();loadAdminActions();updateContactFormSchools();
+});
 
 // Debug & Test Functions
 window.testSync = async function(){
