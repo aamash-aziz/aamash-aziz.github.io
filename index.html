@@ -508,13 +508,13 @@ setTimeout(()=>{closeWelcomeCard()},5000);
         <div class="form-group"><label>Full Name</label><input type="text" id="cf-name" placeholder="Your full name"></div>
         <div class="form-group"><label>Phone Number</label><input type="tel" id="cf-phone" placeholder="+92-XXX-XXXXXXX"></div>
         <div class="form-group"><label>School of Interest</label>
-          <select id="cf-school">
+          <select id="cf-school" onchange="updateAdmissionMessage()">
             <option value="apms" data-school="apms">Aziz Public Model School</option>
             <option value="kids" data-school="kids">Aziz Kids</option>
             <option value="gps3" data-school="gps3">GPS Kothay Wala No. 3</option>
             <option value="gpsmw" data-school="gpsmw">GPS Munshi Wala</option>
           </select>
-          <div id="adm-closed-msg" style="color:#dc3545;font-size:13px;margin-top:8px;display:none">❌ Admissions closed for selected school</div>
+          <div id="adm-closed-msg" style="color:#dc3545;font-size:13px;margin-top:8px;display:none">ℹ️ Admissions are closed for this school. You can still contact us with your inquiry.</div>
         </div>
         <div class="form-group"><label>Message</label><textarea id="cf-message" placeholder="Your message or inquiry..."></textarea></div>
         <button class="contact-send-btn" id="send-btn" onclick="sendContactForm()"><span id="send-txt">&#9993; Send Message</span></button>
@@ -642,7 +642,7 @@ setTimeout(()=>{closeWelcomeCard()},5000);
     <div class="lock-icon">&#128272;</div>
     <h2>Admin Access</h2>
     <p>Enter credentials to manage school content</p>
-    <div class="admin-form-group"><label>Username</label><input type="text" id="loginUser" placeholder="admin"></div>
+    <div class="admin-form-group"><label>Username</label><input type="text" id="loginUser" placeholder="user"></div>
     <div class="admin-form-group"><label>Password</label><input type="password" id="loginPass" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" onkeydown="if(event.key==='Enter')doLogin()"></div>
     <button class="admin-save-btn" style="width:100%;margin-top:4px" onclick="doLogin()">Login &#8594;</button>
     <div class="login-error" id="loginError">&#10060; Incorrect username or password.</div>
@@ -1022,33 +1022,20 @@ let adminActions=[];
 
 // Update contact form schools based on admissions status
 function updateContactFormSchools(){
+  updateAdmissionMessage();
+}
+
+// Update admission message based on selected school
+function updateAdmissionMessage(){
   const schoolSelect=document.getElementById('cf-school');
-  const options=schoolSelect.querySelectorAll('option');
   const closedMsg=document.getElementById('adm-closed-msg');
-  let hasOpenSchools=false;
-  
-  options.forEach(option=>{
-    const schoolKey=option.value;
-    if(schoolAdmissionsStatus[schoolKey]===true){
-      option.style.display='block';
-      hasOpenSchools=true;
-    }else{
-      option.style.display='none';
-    }
-  });
-  
-  // If selected school is closed, show message
   const currentSchool=schoolSelect.value;
+  
+  // Show message if selected school has closed admissions
   if(currentSchool&&!schoolAdmissionsStatus[currentSchool]){
     closedMsg.style.display='block';
   }else{
     closedMsg.style.display='none';
-  }
-  
-  // Select first available open school
-  if(!schoolAdmissionsStatus[currentSchool]){
-    const openSchool=Array.from(options).find(o=>schoolAdmissionsStatus[o.value]===true);
-    if(openSchool)schoolSelect.value=openSchool.value;
   }
 }
 
