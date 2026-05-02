@@ -237,7 +237,7 @@ footer{background:var(--navy);padding:60px 5% 32px;border-top:3px solid var(--go
 .login-error{color:#c0392b;font-size:13px;margin-top:10px;display:none;text-align:center;}
 .login-error.show{display:block;}
 .login-close{float:right;background:none;border:none;font-size:22px;cursor:pointer;color:var(--text-light);margin-top:-36px;}
-@media(max-width:700px){.about-grid,.contact-grid{grid-template-columns:1fr;}.about-visual{height:300px;}.footer-grid{grid-template-columns:1fr 1fr;}.nav-links{display:none;}.hero-stats{gap:28px;}.director-card{flex-direction:column;text-align:center;}.form-row{grid-template-columns:1fr;}.school-card{height:100%}.schools-grid{grid-template-columns:1fr}.detail-section{padding:20px;}.school-detail-body{padding:40px 5%;}}
+@media(max-width:700px){.about-grid,.contact-grid{grid-template-columns:1fr;}.about-visual{height:auto;min-height:0;}.about-bg-block{position:static;width:100%;height:180px;margin-bottom:16px;}.about-front-card{position:static;width:100%;margin-top:0;}.footer-grid{grid-template-columns:1fr 1fr;}.nav-links{display:none;}.hero-stats{gap:28px;}.director-card{flex-direction:column;text-align:center;}.form-row{grid-template-columns:1fr;}.school-card{height:100%}.schools-grid{grid-template-columns:1fr}.detail-section{padding:20px;}.school-detail-body{padding:40px 5%;}}
 @media(max-width:600px){.footer-grid{grid-template-columns:1fr;}.hero-stats{flex-direction:column;gap:16px;}nav{padding:0 4%;}body{font-size:14px}.hero{min-height:90vh;padding-top:60px}.hero h1{font-size:clamp(28px,6vw,48px)}.hero p{font-size:15px}.section-header h2{font-size:clamp(22px,5vw,32px)}.hero-badge{font-size:11px;padding:5px 14px}.hero-cta{flex-direction:column}.btn-primary,.btn-outline{width:100%;padding:12px 24px;font-size:14px}.schools-grid{gap:16px}.school-card-body{padding:16px}.feature-card{padding:20px 16px}.teachers-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}.teacher-card{padding:16px 12px}.director-card{padding:24px;gap:20px}.detail-grid{gap:24px}.contact-grid{gap:24px}.admin-tabs{gap:4px;flex-wrap:wrap}.admin-body{padding:20px}.admin-form-group input,.admin-form-group textarea,.admin-form-group select{font-size:16px}.nav-admin-btn{padding:8px 14px;font-size:16px;width:auto}.form-row{display:block}.admin-form-group{margin-bottom:16px}section{padding:60px 4%}nav{height:60px}body{overflow-x:hidden}.hero-stats{font-size:12px}.stat .num{font-size:24px}.admin-header{padding:20px 16px}.admin-container{border-radius:12px}h1{word-break:break-word}}
 /* 3D EFFECTS & ANIMATIONS */
 
@@ -847,7 +847,8 @@ setTimeout(()=>{closeWelcomeCard()},5000);
 
 <script>
 const AU='admin', AP='aziz2025';
-let teachers=[{id:1717286400000,name:'Khalida Saleem',role:'Principal',edu:'MA Urdu',schools:['apms','kids'],photo:''},{id:1717286400001,name:'Muhammad Aqil',role:'Principal',edu:'D-Pharm',schools:['apms','gpsmw','gps3'],photo:'aqil.jpeg'},{id:1717286400002,name:'Naila Bashir',role:'Vice Principal',edu:'BA',schools:['apms'],photo:''},{id:1717286400003,name:'Sofia',role:'Vice Principal',edu:'MA',schools:['apms'],photo:''},{id:1717286400004,name:'Farheen',role:'Vice Principal',edu:'BA',schools:['kids'],photo:''}], tPhoto='', dPhoto='';
+const defaultTeachers=[{id:1717286400000,name:'Khalida Saleem',role:'Principal',edu:'MA Urdu',schools:['apms','kids'],photo:''},{id:1717286400001,name:'Muhammad Aqil',role:'Principal',edu:'D-Pharm',schools:['apms','gpsmw','gps3'],photo:'aqil.jpeg'},{id:1717286400002,name:'Naila Bashir',role:'Vice Principal',edu:'BA',schools:['apms'],photo:''},{id:1717286400003,name:'Sofia',role:'Vice Principal',edu:'MA',schools:['apms'],photo:''},{id:1717286400004,name:'Farheen',role:'Vice Principal',edu:'BA',schools:['kids'],photo:''}];
+let teachers=defaultTeachers.map(t=>({...t})), tPhoto='', dPhoto='';
 
 // Log initialization
 console.log('✅ Page loaded - Teachers initialized:', teachers.length);
@@ -945,6 +946,32 @@ function renderAllSchoolFaculty(){
   console.log('🎓 Starting to render all school faculty');
   ['apms','kids','gps3','gpsmw'].forEach(s=>renderSchoolFaculty(s));
   renderAllStaff();
+}
+
+function mergeTeachers(base,incoming){
+  const map=new Map();
+  base.forEach(t=>{map.set(normalizeTeacherKey(t),{...t});});
+  incoming.forEach(t=>{
+    const key=normalizeTeacherKey(t);
+    if(map.has(key)){
+      const existing=map.get(key);
+      map.set(key,{...existing,...t,photo:t.photo||existing.photo,schools:mergeSchools(existing.schools,t.schools)});
+    }else{
+      map.set(key,{...t});
+    }
+  });
+  return Array.from(map.values());
+}
+
+function normalizeTeacherKey(t){
+  const name=(t.name||'').toLowerCase().trim();
+  const role=(t.role||'').toLowerCase().trim();
+  return name+'|'+role;
+}
+
+function mergeSchools(a,b){
+  const list=[...(a||[]),...(b||[])];
+  return Array.from(new Set(list));
 }
 
 function applyDirectorProfile(){
@@ -1056,8 +1083,10 @@ async function loadDataFromSupabase(){
         // Parse all JSON fields
         const loadedTeachers=JSON.parse(res.data.teachers||'[]');
         if(loadedTeachers.length>0){
-          teachers=loadedTeachers;
-          teachers=teachers.map(t=>{if(t.school&&!t.schools){return {...t,schools:t.school?[t.school]:[],school:undefined};}return t;});
+          const normalized=loadedTeachers.map(t=>{if(t.school&&!t.schools){return {...t,schools:t.school?[t.school]:[],school:undefined};}return t;});
+          teachers=mergeTeachers(defaultTeachers,normalized);
+        }else{
+          teachers=defaultTeachers.map(t=>({...t}));
         }
         director=JSON.parse(res.data.director||'{}');
         eCfg=JSON.parse(res.data.email_config||'{}');
@@ -1082,8 +1111,10 @@ async function loadDataFromSupabase(){
       const loadedTeachers=JSON.parse(data.teachers||'[]');
       console.log('✅ Loaded data from localStorage - Teachers:', loadedTeachers.length);
       if(loadedTeachers.length>0){
-        teachers=loadedTeachers;
-        teachers=teachers.map(t=>{if(t.school&&!t.schools){return {...t,schools:t.school?[t.school]:[],school:undefined};}return t;});
+        const normalized=loadedTeachers.map(t=>{if(t.school&&!t.schools){return {...t,schools:t.school?[t.school]:[],school:undefined};}return t;});
+        teachers=mergeTeachers(defaultTeachers,normalized);
+      }else{
+        teachers=defaultTeachers.map(t=>({...t}));
       }
       director=JSON.parse(data.director||'{}');
       eCfg=JSON.parse(data.email_config||'{}');
