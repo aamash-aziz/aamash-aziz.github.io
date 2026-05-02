@@ -49,8 +49,9 @@ section{padding:90px 5%;}
 .section-tag{display:inline-block;padding:5px 16px;background:rgba(201,146,42,0.1);border:1px solid rgba(201,146,42,0.3);border-radius:30px;color:var(--gold);font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-weight:500;}
 .section-header h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,46px);font-weight:700;color:var(--navy);line-height:1.2;}
 .section-header p{font-size:17px;color:var(--text-mid);margin-top:14px;max-width:580px;margin-left:auto;margin-right:auto;}
-.schools-section{background:var(--white);}
-.schools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;max-width:1200px;margin:0 auto;}
+.schools-section{background:var(--white);overflow-x:hidden;}
+.schools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;max-width:1200px;margin:0 auto;width:100%;min-width:0;}
+.school-card{min-width:0;}
 .school-card{background:var(--white);border:1px solid rgba(13,27,62,0.08);border-radius:16px;overflow:hidden;cursor:pointer;text-decoration:none;display:block;transition:all 0.35s cubic-bezier(0.175,0.885,0.32,1.275);box-shadow:0 4px 20px rgba(13,27,62,0.06);position:relative;}
 .school-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover);border-color:var(--gold);}
 .school-card-img{height:180px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
@@ -171,7 +172,7 @@ footer{background:var(--navy);padding:60px 5% 32px;border-top:3px solid var(--go
 .school-meta-tag{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.75);font-size:14px;}
 .school-detail-body{padding:60px 5%;background:var(--cream);overflow-x:visible;}
 .detail-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:28px;max-width:1200px;margin:0 auto;width:100%;box-sizing:border-box;align-items:start;}
-@media(max-width:900px){.school-detail-body{padding:40px 4%;}.detail-grid{grid-template-columns:1fr;max-width:100%;}}
+@media(max-width:900px){.school-detail-body{padding:40px 4%;}.detail-grid{grid-template-columns:1fr;max-width:100%;}.schools-section{padding-left:4%;padding-right:4%;}.schools-grid{grid-template-columns:1fr;max-width:100%;}}
 .detail-section{background:var(--white);border-radius:16px;padding:24px;margin-bottom:28px;border:1px solid rgba(13,27,62,0.06);overflow-x:hidden;word-wrap:break-word;min-width:0;}
 .detail-section h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(13,27,62,0.08);word-wrap:break-word;}
 .detail-section p{font-size:15px;color:var(--text-mid);line-height:1.8;word-wrap:break-word;}
