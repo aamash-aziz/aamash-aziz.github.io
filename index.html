@@ -11,7 +11,8 @@
 <style>
 :root{--gold:#f59e0b;--gold-light:#fbbf24;--navy:#7c3aed;--navy-mid:#a855f7;--navy-light:#06b6d4;--cream:#f8f7ff;--white:#FFFFFF;--text-dark:#1e1b4b;--text-mid:#6b5d8f;--text-light:#9ca3af;--shadow:0 20px 60px rgba(124,58,237,0.15);--shadow-hover:0 30px 80px rgba(124,58,237,0.25);}
 *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
-body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;}
+html,body{width:100%;overflow-x:hidden;}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text-dark);}
 nav{position:fixed;top:0;width:100%;z-index:1000;background:linear-gradient(135deg,rgba(124,58,237,0.95),rgba(6,182,212,0.05));backdrop-filter:blur(12px);border-bottom:1px solid rgba(124,58,237,0.3);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:72px;}
 .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
 .nav-logo .emblem{width:46px;height:46px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:20px;color:var(--navy);box-shadow:0 0 20px rgba(201,146,42,0.4);}
@@ -50,8 +51,9 @@ section{padding:90px 5%;}
 .section-header h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,46px);font-weight:700;color:var(--navy);line-height:1.2;}
 .section-header p{font-size:17px;color:var(--text-mid);margin-top:14px;max-width:580px;margin-left:auto;margin-right:auto;}
 .schools-section{background:var(--white);overflow-x:hidden;}
-.schools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;max-width:1200px;margin:0 auto;width:100%;min-width:0;}
-.school-card{min-width:0;}
+.schools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;max-width:1200px;margin:0 auto;width:100%;min-width:0;justify-items:stretch;}
+.school-card{min-width:0;width:100%;max-width:100%;}
+.school-card-img,.school-card-body{max-width:100%;}
 .school-card{background:var(--white);border:1px solid rgba(13,27,62,0.08);border-radius:16px;overflow:hidden;cursor:pointer;text-decoration:none;display:block;transition:all 0.35s cubic-bezier(0.175,0.885,0.32,1.275);box-shadow:0 4px 20px rgba(13,27,62,0.06);position:relative;}
 .school-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover);border-color:var(--gold);}
 .school-card-img{height:180px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
@@ -172,7 +174,7 @@ footer{background:var(--navy);padding:60px 5% 32px;border-top:3px solid var(--go
 .school-meta-tag{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.75);font-size:14px;}
 .school-detail-body{padding:60px 5%;background:var(--cream);overflow-x:visible;}
 .detail-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:28px;max-width:1200px;margin:0 auto;width:100%;box-sizing:border-box;align-items:start;}
-@media(max-width:900px){.school-detail-body{padding:40px 4%;}.detail-grid{grid-template-columns:1fr;max-width:100%;}.schools-section{padding-left:4%;padding-right:4%;}.schools-grid{grid-template-columns:1fr;max-width:100%;}}
+@media(max-width:900px){.school-detail-body{padding:40px 4%;}.detail-grid{grid-template-columns:1fr;max-width:100%;}.schools-section{padding-left:4%;padding-right:4%;}.schools-grid{grid-template-columns:minmax(0,1fr);max-width:100%;}}
 .detail-section{background:var(--white);border-radius:16px;padding:24px;margin-bottom:28px;border:1px solid rgba(13,27,62,0.06);overflow-x:hidden;word-wrap:break-word;min-width:0;}
 .detail-section h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(13,27,62,0.08);word-wrap:break-word;}
 .detail-section p{font-size:15px;color:var(--text-mid);line-height:1.8;word-wrap:break-word;}
