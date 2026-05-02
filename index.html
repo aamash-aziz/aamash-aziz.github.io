@@ -169,13 +169,13 @@ footer{background:var(--navy);padding:60px 5% 32px;border-top:3px solid var(--go
 .school-hero-content h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,54px);font-weight:900;color:var(--white);line-height:1.1;}
 .school-meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;}
 .school-meta-tag{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.75);font-size:14px;}
-.school-detail-body{padding:60px 5%;background:var(--cream);overflow-x:hidden;}
-.detail-grid{display:grid;grid-template-columns:2fr 1fr;gap:20px;max-width:1400px;margin:0 auto;width:100%;box-sizing:border-box;}
-@media(max-width:768px){.detail-grid{grid-template-columns:1fr;}}
-.detail-section{background:var(--white);border-radius:16px;padding:24px;margin-bottom:28px;border:1px solid rgba(13,27,62,0.06);overflow-x:hidden;word-wrap:break-word;}
+.school-detail-body{padding:60px 5%;background:var(--cream);overflow-x:visible;}
+.detail-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:28px;max-width:1200px;margin:0 auto;width:100%;box-sizing:border-box;align-items:start;}
+@media(max-width:900px){.school-detail-body{padding:40px 4%;}.detail-grid{grid-template-columns:1fr;max-width:100%;}}
+.detail-section{background:var(--white);border-radius:16px;padding:24px;margin-bottom:28px;border:1px solid rgba(13,27,62,0.06);overflow-x:hidden;word-wrap:break-word;min-width:0;}
 .detail-section h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(13,27,62,0.08);word-wrap:break-word;}
 .detail-section p{font-size:15px;color:var(--text-mid);line-height:1.8;word-wrap:break-word;}
-.sidebar-card{background:var(--white);border-radius:16px;padding:28px;margin-bottom:24px;border:1px solid rgba(13,27,62,0.06);overflow-x:hidden;width:100%;box-sizing:border-box;}
+.sidebar-card{background:var(--white);border-radius:16px;padding:28px;margin-bottom:24px;border:1px solid rgba(13,27,62,0.06);overflow-x:hidden;width:100%;box-sizing:border-box;min-width:0;}
 .sidebar-card h4{font-size:14px;text-transform:uppercase;letter-spacing:1px;color:var(--text-light);margin-bottom:16px;font-weight:600;}
 .info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(13,27,62,0.06);font-size:14px;}
 .info-row:last-child{border:none;}
@@ -386,7 +386,7 @@ setTimeout(()=>{closeWelcomeCard()},5000);
         <div class="stat"><div class="num">4</div><div class="label">Schools</div></div>
         <div class="stat"><div class="num">2000+</div><div class="label">Students</div></div>
         <div class="stat"><div class="num">24</div><div class="label">Years</div></div>
-        <div class="stat"><div class="num">100+</div><div class="label">Staff</div></div>
+        <div class="stat"><div class="num" id="hero-staff-count">100+</div><div class="label">Staff</div></div>
       </div>
     </div>
     <div class="scroll-indicator"><svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></div>
@@ -435,11 +435,16 @@ setTimeout(()=>{closeWelcomeCard()},5000);
           <div class="director-badge">&#10022; Director</div>
           <h3 id="director-name">Muhammad Aqil</h3>
           <div class="dir-edu" id="director-edu">D-Pharm &mdash; BZU , Multan</div>
-          <p id="director-bio">With over 25 years of experience in education, our Director founded the Aziz Group with a singular vision: to bring quality education within reach of every child in our community. His unwavering commitment to academic excellence and moral development has been the driving force behind the group's growth and impact.</p>
+          <p id="director-bio">With over 25 years of experience in education, our Director founded the Aziz Group with a singular vision: to bring quality education within reach of every child in our community. His unwavering commitment to academic excellence and moral development has been the driving force behind the group's growth and impact. He serves as Director of the Aziz Group and also as Principal for Aziz Public Model School, GPS Munshi Wala, and GPS Kothay Wala No. 3.</p>
         </div>
       </div>
     </div>
-    <!-- Faculty sections are shown per-school in detail pages -->
+    <div class="section-header" style="margin-top:40px">
+      <span class="section-tag">&#10022; Faculty &amp; Staff</span>
+      <h2 style="font-size:clamp(22px,3vw,32px)">Meet Our Educators</h2>
+      <p>Our dedicated teachers and staff serve across all Aziz Group schools.</p>
+    </div>
+    <div id="all-staff-list" class="teachers-grid"></div>
   </section>
 
   <section class="about-section" id="about">
@@ -453,7 +458,7 @@ setTimeout(()=>{closeWelcomeCard()},5000);
             <div class="mini-stat"><div class="n">4</div><div class="l">Schools</div></div>
             <div class="mini-stat"><div class="n">25+</div><div class="l">Years</div></div>
             <div class="mini-stat"><div class="n">2000+</div><div class="l">Students</div></div>
-            <div class="mini-stat"><div class="n">100+</div><div class="l">Teachers</div></div>
+            <div class="mini-stat"><div class="n" id="about-staff-count">100+</div><div class="l">Teachers</div></div>
           </div>
         </div>
       </div>
@@ -500,7 +505,7 @@ setTimeout(()=>{closeWelcomeCard()},5000);
         <h3>Visit Us or Get in Touch</h3>
         <p>Our administrative office is here to assist parents, students, and community members. Don't hesitate to reach out.</p>
         <div class="contact-item"><div class="contact-item-icon">&#128205;</div><div class="contact-item-text"><strong>Address</strong><span>Multan, Punjab, Pakistan</span></div></div>
-        <div class="contact-item"><div class="contact-item-icon">&#128222;</div><div class="contact-item-text"><strong>Phone</strong><span id="contact-phone">+92-XXX-XXXXXXX</span></div></div>
+        <div class="contact-item"><div class="contact-item-icon">&#128222;</div><div class="contact-item-text"><strong>Phone</strong><span id="contact-phone">+92-333-6109100</span></div></div>
         <div class="contact-item"><div class="contact-item-icon">&#128231;</div><div class="contact-item-text"><strong>Email</strong><span id="contact-email">info@azizschools.edu.pk</span></div></div>
         <div class="contact-item"><div class="contact-item-icon">&#128336;</div><div class="contact-item-text"><strong>Office Hours</strong><span>Mon&ndash;Sat: 8:00 AM &ndash; 3:00 PM</span></div></div>
       </div>
@@ -555,14 +560,14 @@ setTimeout(()=>{closeWelcomeCard()},5000);
       <div class="school-meta"><span class="school-meta-tag">&#127979; Co-Educational</span><span class="school-meta-tag">&#128218; Nursery to Matriculation</span><span class="school-meta-tag">&#128205; Multan</span></div>
     </div>
   </div>
-  <div class="school-detail-body"><div class="detail-grid row">
-    <div class="col-lg-8 col-md-12">
+  <div class="school-detail-body"><div class="detail-grid">
+    <div>
       <div class="detail-section"><h3>About the School</h3><p id="apms-about">Aziz Public Model School is the flagship institution of the Aziz Group of Schools. It is a premier co-educational school offering education from Nursery through Matriculation. The school is committed to providing a nurturing, stimulating, and challenging academic environment that fosters intellectual curiosity and personal growth in every student.</p></div>
       <div class="detail-section"><h3>Academic Programs</h3><p id="apms-programs">We offer a comprehensive curriculum from Early Childhood Education through Matriculation, following the Punjab Curriculum and Textbook Board guidelines, enriched with additional learning programs to ensure academic excellence.</p></div>
       <div class="detail-section"><h3>Facilities &amp; Activities</h3><div id="apms-facilities-list"><div class="removable-item">&#128300; Science &amp; Computer Laboratories</div><div class="removable-item">&#128214; Well-stocked Library</div><div class="removable-item">&#9917; Sports Ground &amp; Gymnasium</div><div class="removable-item">&#127912; Arts &amp; Crafts Room</div><div class="removable-item">&#127942; Annual Sports Day &amp; Prize Distribution</div></div></div>
       <div class="detail-section"><h3>Faculty &amp; Staff</h3><div id="apms-faculty-list" class="teachers-grid"></div></div>
     </div>
-    <div class="col-lg-4 col-md-12">
+    <div>
       <div class="sidebar-card"><h4>School Info</h4><div class="info-row"><span class="label">Type</span><span class="value">Co-Educational</span></div><div class="info-row"><span class="label">Levels</span><span class="value">Nursery &ndash; Matric</span></div><div class="info-row"><span class="label">Medium</span><span class="value" id="apms-medium">English &amp; Urdu</span></div><div class="info-row"><span class="label">Location</span><span class="value">Multan</span></div></div>
       <div class="sidebar-card"><h4>Admissions</h4><p style="font-size:14px;color:var(--text-mid);line-height:1.7" id="apms-admissions">Admissions are open for all classes. Contact the school office for registration forms, fee structure, and interview schedules.</p><button class="btn-primary" style="margin-top:16px;width:100%" onclick="showMain();setTimeout(()=>document.getElementById('contact').scrollIntoView(),300)">Enquire Now</button></div>
     </div>
@@ -842,9 +847,17 @@ setTimeout(()=>{closeWelcomeCard()},5000);
 
 <script>
 const AU='admin', AP='aziz2025';
-let teachers=[], tPhoto='', dPhoto='';
-let director={name:'Muhammad Aqil',edu:'D Pharm - BZU, Multan',bio:'With over 25 years of experience in education, our Director founded the Aziz Group with a singular vision: to bring quality education within reach of every child in our community. His unwavering commitment to academic excellence and moral development has been the driving force behind the group’s growth and impact.',photo:''};
+let teachers=[{id:1717286400000,name:'Khalida Saleem',role:'Principal',edu:'MA Urdu',schools:['apms','kids'],photo:''},{id:1717286400001,name:'Muhammad Aqil',role:'Principal',edu:'D-Pharm',schools:['apms','gpsmw','gps3'],photo:'aqil.jpeg'},{id:1717286400002,name:'Naila Bashir',role:'Vice Principal',edu:'BA',schools:['apms'],photo:''},{id:1717286400003,name:'Sofia',role:'Vice Principal',edu:'MA',schools:['apms'],photo:''},{id:1717286400004,name:'Farheen',role:'Vice Principal',edu:'BA',schools:['kids'],photo:''}], tPhoto='', dPhoto='';
+
+// Log initialization
+console.log('✅ Page loaded - Teachers initialized:', teachers.length);
+if(typeof window !== 'undefined') {
+  window.initialTeachers = JSON.parse(JSON.stringify(teachers));
+  console.log('📋 Initial teachers saved:', window.initialTeachers);
+}
+let director={name:'Muhammad Aqil',edu:'D Pharm - BZU, Multan',bio:'With over 25 years of experience in education, our Director founded the Aziz Group with a singular vision: to bring quality education within reach of every child in our community. He serves as Director of the Aziz Group and also as Principal for Aziz Public Model School, GPS Munshi Wala, and GPS Kothay Wala No. 3. His unwavering commitment to academic excellence and moral development has been the driving force behind the group’s growth and impact.',photo:'aqil.jpeg'};
 let eCfg={key:'',svc:'',tpl:'',email:''};let announcements=[];
+// Updated: M Aqil also principal for APMS, GPS Munshi Wala, GPS Kothay Wala
 let schoolContacts={apms:{phone:'',email:'',location:''},kids:{phone:'',email:'',location:''},gps3:{phone:'',email:'',location:''},gpsmw:{phone:'',email:'',location:''}};
 let schoolAdmissionsStatus={apms:false,kids:false,gps3:false,gpsmw:false};const sData={};
 ['apms','kids','gps3','gpsmw'].forEach(s=>{sData[s]={short:(document.getElementById(s+'-desc-short')||{}).textContent||'',about:(document.getElementById(s+'-about')||{}).textContent||'',programs:(document.getElementById(s+'-programs')||{}).textContent||'',admissions:(document.getElementById(s+'-admissions')||{}).textContent||''};});
@@ -895,12 +908,81 @@ function setImgPreview(imgId,emojiId,src){const img=document.getElementById(imgI
 function handleDirPhoto(input){if(!input.files||!input.files[0])return;const r=new FileReader();r.onload=e=>{dPhoto=e.target.result;setImgPreview('dir-img-prev','dir-emoji-prev',dPhoto);};r.readAsDataURL(input.files[0]);}
 function handleTeacherPhoto(input){if(!input.files||!input.files[0])return;const r=new FileReader();r.onload=e=>{tPhoto=e.target.result;setImgPreview('t-img-prev','t-emoji-prev',tPhoto);};r.readAsDataURL(input.files[0]);}
 
-function saveDirector(){director.name=document.getElementById('dir-name').value;director.edu=document.getElementById('dir-edu').value;director.bio=document.getElementById('dir-bio').value;if(dPhoto){director.photo=dPhoto;setImgPreview('director-img','director-emoji',director.photo);}document.getElementById('director-name').textContent=director.name;document.getElementById('director-edu').textContent=director.edu;document.getElementById('director-bio').textContent=director.bio;logAdminAction('DIRECTOR_INFO_UPDATED',`Updated director information: ${director.name}`,{name:director.name,education:director.edu,photoUpdated:!!dPhoto});showNotice();syncToSupabase();}
+function saveDirector(){director.name=document.getElementById('dir-name').value;director.edu=document.getElementById('dir-edu').value;director.bio=document.getElementById('dir-bio').value;if(dPhoto){director.photo=dPhoto;setImgPreview('director-img','director-emoji',director.photo);}document.getElementById('director-name').textContent=director.name;document.getElementById('director-edu').textContent=director.edu;document.getElementById('director-bio').textContent=director.bio;updateStaffCount();logAdminAction('DIRECTOR_INFO_UPDATED',`Updated director information: ${director.name}`,{name:director.name,education:director.edu,photoUpdated:!!dPhoto});showNotice();syncToSupabase();}
 
-function addTeacher(){const n=document.getElementById('t-name').value.trim(),r=document.getElementById('t-role').value.trim(),schools=Array.from(document.querySelectorAll('.t-school-check:checked')).map(c=>c.value);if(!n||!r){alert('Please enter name and role.');return;}if(!schools.length){alert('Please select at least one school.');return;}teachers.push({id:Date.now(),name:n,role:r,edu:document.getElementById('t-edu').value.trim(),schools:schools,photo:tPhoto});['t-name','t-role','t-edu'].forEach(id=>document.getElementById(id).value='');document.querySelectorAll('.t-school-check').forEach(c=>c.checked=false);document.getElementById('t-img-prev').style.display='none';document.getElementById('t-emoji-prev').style.display='block';document.getElementById('t-file').value='';tPhoto='';renderStaffAdmin();renderAllSchoolFaculty();logAdminAction('TEACHER_ADDED',`Added new teacher: ${n}`,{name:n,role:r,schools:schools,hasPhoto:!!tPhoto});showNotice();syncToSupabase();}
-function removeTeacher(id){const teacher=teachers.find(t=>t.id===id);teachers=teachers.filter(t=>t.id!==id);logAdminAction('TEACHER_REMOVED',`Removed teacher: ${teacher.name}`,{name:teacher.name,role:teacher.role});renderStaffAdmin();renderAllSchoolFaculty();showNotice();syncToSupabase();}
+function addTeacher(){const n=document.getElementById('t-name').value.trim(),r=document.getElementById('t-role').value.trim(),schools=Array.from(document.querySelectorAll('.t-school-check:checked')).map(c=>c.value);if(!n||!r){alert('Please enter name and role.');return;}if(!schools.length){alert('Please select at least one school.');return;}teachers.push({id:Date.now(),name:n,role:r,edu:document.getElementById('t-edu').value.trim(),schools:schools,photo:tPhoto});['t-name','t-role','t-edu'].forEach(id=>document.getElementById(id).value='');document.querySelectorAll('.t-school-check').forEach(c=>c.checked=false);document.getElementById('t-img-prev').style.display='none';document.getElementById('t-emoji-prev').style.display='block';document.getElementById('t-file').value='';tPhoto='';renderStaffAdmin();renderAllSchoolFaculty();updateStaffCount();logAdminAction('TEACHER_ADDED',`Added new teacher: ${n}`,{name:n,role:r,schools:schools,hasPhoto:!!tPhoto});showNotice();syncToSupabase();}
+function removeTeacher(id){const teacher=teachers.find(t=>t.id===id);teachers=teachers.filter(t=>t.id!==id);logAdminAction('TEACHER_REMOVED',`Removed teacher: ${teacher.name}`,{name:teacher.name,role:teacher.role});renderStaffAdmin();renderAllSchoolFaculty();updateStaffCount();showNotice();syncToSupabase();}
 
-function renderSchoolFaculty(schoolId){const g=document.getElementById(schoolId+'-faculty-list');if(!g)return;const schoolTeachers=teachers.filter(t=>t.schools&&t.schools.includes(schoolId));if(!schoolTeachers.length){g.innerHTML='<p style="font-size:14px;color:var(--text-light);text-align:center;padding:20px">Faculty information coming soon.</p>';return;}g.innerHTML=schoolTeachers.map(t=>`<div class="teacher-card"><div class="teacher-photo">${t.photo?`<img src="${t.photo}" alt="${t.name}">`:`<span>&#128100;</span>`}</div><h4>${t.name}</h4><div class="t-role">${t.role}</div>${t.edu?`<div class="t-edu">${t.edu}</div>`:''}</div>`).join('');}function renderAllSchoolFaculty(){['apms','kids','gps3','gpsmw'].forEach(s=>renderSchoolFaculty(s));}
+function renderSchoolFaculty(schoolId){
+  console.log(`📍 Rendering faculty for: ${schoolId}`);
+  console.log(`👥 Total teachers in array:`, teachers.length);
+  console.log(`👥 Teachers data:`, teachers);
+  
+  const g=document.getElementById(schoolId+'-faculty-list');
+  if(!g){
+    console.warn(`⚠️ Element not found: ${schoolId}-faculty-list`);
+    return;
+  }
+  
+  const schoolTeachers=teachers.filter(t=>{
+    const hasSchools = t.schools && Array.isArray(t.schools);
+    const included = hasSchools && t.schools.includes(schoolId);
+    console.log(`  - ${t.name}: schools=${JSON.stringify(t.schools)}, included=${included}`);
+    return included;
+  }).sort(staffSort);
+  
+  console.log(`📊 School teachers for ${schoolId}:`, schoolTeachers.length);
+  
+  if(!schoolTeachers.length){
+    g.innerHTML='<p style="font-size:14px;color:var(--text-light);text-align:center;padding:20px">Faculty information coming soon.</p>';
+    return;
+  }
+  
+  g.innerHTML=schoolTeachers.map(t=>`<div class="teacher-card"><div class="teacher-photo">${t.photo?`<img src="${t.photo}" alt="${t.name}">`:`<span>&#128100;</span>`}</div><h4>${t.name}</h4><div class="t-role">${t.role}</div>${t.edu?`<div class="t-edu">${t.edu}</div>`:''}</div>`).join('');
+}
+
+function renderAllSchoolFaculty(){
+  console.log('🎓 Starting to render all school faculty');
+  ['apms','kids','gps3','gpsmw'].forEach(s=>renderSchoolFaculty(s));
+  renderAllStaff();
+}
+
+function applyDirectorProfile(){
+  if(director && director.photo){
+    setImgPreview('director-img','director-emoji',director.photo);
+    const dirPreview=document.getElementById('dir-img-prev');
+    if(dirPreview){
+      setImgPreview('dir-img-prev','dir-emoji-prev',director.photo);
+    }
+  }
+}
+
+function renderAllStaff(){
+  const el=document.getElementById('all-staff-list');
+  if(!el)return;
+  const principals=teachers.filter(t=>t.role==='Principal').sort(staffSort);
+  if(!principals.length){
+    el.innerHTML='<p style="font-size:14px;color:var(--text-light);text-align:center;padding:20px">Faculty information coming soon.</p>';
+    return;
+  }
+  const schoolNames={apms:'Aziz Public Model School',kids:'Aziz Kids',gps3:'GPS Kothay Wala No. 3',gpsmw:'GPS Munshi Wala'};
+  el.innerHTML=principals.map(t=>{
+    const schools=t.schools? t.schools.map(s=>schoolNames[s]||s).join(', '):'Multiple schools';
+    return `<div class="teacher-card"><div class="teacher-photo">${t.photo?`<img src="${t.photo}" alt="${t.name}">`:`<span>&#128100;</span>`}</div><h4>${t.name}</h4><div class="t-role">${t.role}</div>${t.edu?`<div class="t-edu">${t.edu}</div>`:''}<div class="t-school">${schools}</div></div>`;
+  }).join('');
+}
+
+function staffSort(a,b){
+  const rolePriority={"Principal":0,"Vice Principal":1};
+  const namePriority={"Muhammad Aqil":0,"Khalida Saleem":1};
+  const ra=rolePriority[a.role]??2;
+  const rb=rolePriority[b.role]??2;
+  if(ra!==rb)return ra-rb;
+  const na=namePriority[a.name];
+  const nb=namePriority[b.name];
+  if(na!==undefined||nb!==undefined)return (na??99)-(nb??99);
+  return a.name.localeCompare(b.name);
+}
 
 function renderStaffAdmin(){const el=document.getElementById('staff-admin-list');if(!teachers.length){el.innerHTML='<p style="font-size:14px;color:var(--text-light);text-align:center;padding:20px">No faculty added yet.</p>';return;}const schoolNames={apms:'APMS',kids:'Aziz Kids',gps3:'GPS KW#3',gpsmw:'GPS MW'};el.innerHTML=teachers.map(t=>`<div class="staff-admin-card"><div class="staff-admin-photo">${t.photo?`<img src="${t.photo}" alt="${t.name}">`:`<span>&#128100;</span>`}</div><div class="staff-admin-info"><strong>${t.name}</strong><em>${t.role}</em><span>${t.edu||''}</span><div style="font-size:11px;color:var(--gold);margin-top:6px;font-weight:600">📍 ${t.schools?t.schools.map(s=>schoolNames[s]||s).join(', '):'No schools'}</div></div><button class="remove-btn" onclick="removeTeacher(${t.id})">Remove</button></div>`).join('');};
 
@@ -942,8 +1024,10 @@ async function syncToSupabase(){
     theme_colors:JSON.stringify({gold:document.documentElement.style.getPropertyValue('--gold')||'#C9922A',goldLight:document.documentElement.style.getPropertyValue('--gold-light')||'#E8B84B',navy:document.documentElement.style.getPropertyValue('--navy')||'#0D1B3E',navyMid:document.documentElement.style.getPropertyValue('--navy-mid')||'#162447',navyLight:document.documentElement.style.getPropertyValue('--navy-light')||'#1E3460',textDark:document.documentElement.style.getPropertyValue('--text-dark')||'#0D1B3E',cream:document.documentElement.style.getPropertyValue('--cream')||'#FAF6EE'})
   };
   
-  // Save to localStorage as backup
-  localStorage.setItem('aziz_schools_data',JSON.stringify(allData));
+  // Save to localStorage with timestamp
+  const backup={...allData,lastSaved:new Date().toISOString(),teacherCount:teachers.length};
+  localStorage.setItem('aziz_schools_data',JSON.stringify(backup));
+  console.log('💾 Data saved to localStorage - Teachers: '+teachers.length);
   
   // Sync to Supabase if available
   if(!window.supabase_client)return;
@@ -953,7 +1037,7 @@ async function syncToSupabase(){
       console.warn('⚠️ Supabase sync error:',res.error.message);
       return false;
     }
-    console.log('✅ Data synced to Supabase');
+    console.log('✅ Data synced to Supabase - Teachers: '+teachers.length);
     return true;
   }catch(e){
     console.warn('❌ Sync exception:',e.message);
@@ -968,11 +1052,13 @@ async function loadDataFromSupabase(){
     try{
       const res=await window.supabase_client.from('school_data').select('*').eq('id',1).single();
       if(res.data){
-        console.log('✅ Loaded data from Supabase');
+        console.log('✅ Loaded data from Supabase - Teachers:', res.data.teachers?JSON.parse(res.data.teachers||'[]').length:0);
         // Parse all JSON fields
-        teachers=JSON.parse(res.data.teachers||'[]');
-        // Convert old teacher format (single school string) to new format (schools array)
-        teachers=teachers.map(t=>{if(t.school&&!t.schools){return {...t,schools:t.school?[t.school]:[],school:undefined};}return t;});
+        const loadedTeachers=JSON.parse(res.data.teachers||'[]');
+        if(loadedTeachers.length>0){
+          teachers=loadedTeachers;
+          teachers=teachers.map(t=>{if(t.school&&!t.schools){return {...t,schools:t.school?[t.school]:[],school:undefined};}return t;});
+        }
         director=JSON.parse(res.data.director||'{}');
         eCfg=JSON.parse(res.data.email_config||'{}');
         Object.assign(sData,JSON.parse(res.data.school_descriptions||'{}'));
@@ -993,9 +1079,12 @@ async function loadDataFromSupabase(){
   if(saved){
     try{
       const data=JSON.parse(saved);
-      teachers=JSON.parse(data.teachers||'[]');
-      // Convert old teacher format (single school string) to new format (schools array)
-      teachers=teachers.map(t=>{if(t.school&&!t.schools){return {...t,schools:t.school?[t.school]:[],school:undefined};}return t;});
+      const loadedTeachers=JSON.parse(data.teachers||'[]');
+      console.log('✅ Loaded data from localStorage - Teachers:', loadedTeachers.length);
+      if(loadedTeachers.length>0){
+        teachers=loadedTeachers;
+        teachers=teachers.map(t=>{if(t.school&&!t.schools){return {...t,schools:t.school?[t.school]:[],school:undefined};}return t;});
+      }
       director=JSON.parse(data.director||'{}');
       eCfg=JSON.parse(data.email_config||'{}');
       Object.assign(sData,JSON.parse(data.school_descriptions||'{}'));
@@ -1004,14 +1093,13 @@ async function loadDataFromSupabase(){
       schoolAdmissionsStatus=JSON.parse(data.admissions_status||'{}');
       const themeColors=JSON.parse(data.theme_colors||'{}');
       if(themeColors.gold)applyTheme(themeColors);
-      console.log('✅ Loaded data from localStorage');
       return true;
     }catch(e){
       console.warn('⚠️ localStorage load failed:',e.message);
     }
   }
   
-  console.log('ℹ️ No saved data found, using defaults');
+  console.log('ℹ️ No saved data found, using defaults - Current teachers:', teachers.length);
   return false;
 }
 
@@ -1154,16 +1242,93 @@ if(typeof window.supabase !== 'undefined'){
 }
 
 // Load data on page load - always attempt this
-loadDataFromSupabase().then(()=>{
-  renderAllSchoolFaculty();updateEmailStatus();loadTheme();renderAnnouncements();loadAdminActions();updateContactFormSchools();
+// First check if localStorage has stale data, if so, clear it
+console.log('🔄 Initializing page - teachers before load:', teachers.length);
+
+const savedData=localStorage.getItem('aziz_schools_data');
+if(savedData){
+  try{
+    const parsed=JSON.parse(savedData);
+    const savedTeachers=JSON.parse(parsed.teachers||'[]');
+    // Only clear if explicitly marked as stale - don't clear empty arrays
+    const savedMeta=JSON.parse(localStorage.getItem('aziz_meta')||'{}');
+    if(savedMeta.isStale && savedTeachers.length===0){
+      localStorage.removeItem('aziz_schools_data');
+      localStorage.removeItem('aziz_meta');
+      console.log('🧹 Cleared stale localStorage data');
+    }
+  }catch(e){}
+}
+
+function updateStaffCount(){
+  const totalStaff = teachers.length + 1; // +1 for director
+  const staffCountEl = document.getElementById('hero-staff-count');
+  const aboutCountEl = document.getElementById('about-staff-count');
+  if(staffCountEl){
+    staffCountEl.textContent = totalStaff > 100 ? '100+' : String(totalStaff);
+  }
+  if(aboutCountEl){
+    aboutCountEl.textContent = totalStaff > 100 ? '100+' : String(totalStaff);
+  }
+}
+
+// Render faculty immediately with current data
+console.log('🎨 Initial faculty render with current teachers');
+renderAllSchoolFaculty();
+applyDirectorProfile();
+updateStaffCount();
+
+loadDataFromSupabase().then((loaded)=>{
+  console.log('📦 Data load complete. Loaded:', loaded, 'Teachers count:', teachers.length);
+  // If no data was loaded, save the defaults
+  if(!loaded){
+    console.log('💾 No saved data found, saving defaults to storage');
+    syncToSupabase();
+  }
+  console.log('🎨 Re-rendering faculty after data load...');
+  renderAllSchoolFaculty();
+  renderStaffAdmin();
+  applyDirectorProfile();
+  updateStaffCount();
+  updateEmailStatus();
+  loadTheme();
+  renderAnnouncements();
+  loadAdminActions();
+  updateContactFormSchools();
 });
 
 // Debug & Test Functions
 window.testSync = async function(){
+  console.log('🧪 TEST: Current teachers:', teachers);
+  console.log('🧪 TEST: Teacher count:', teachers.length);
+  teachers.forEach((t, i) => {
+    console.log(`  [${i}] ${t.name} - Schools: ${JSON.stringify(t.schools)}`);
+  });
+};
+
+window.testRenderFaculty = function(){
+  console.log('🧪 TEST: Forcing re-render of faculty');
+  renderAllSchoolFaculty();
+};
+
+window.testClearData = function(){
+  console.log('🧪 TEST: Clearing localStorage');
+  localStorage.removeItem('aziz_schools_data');
+  location.reload();
+};
+
+window.testReloadData = async function(){
+  console.log('🧪 TEST: Reloading data from storage');
+  const loaded = await loadDataFromSupabase();
+  console.log('🧪 Loaded:', loaded, 'Teachers:', teachers.length);
+  renderAllSchoolFaculty();
+};
+
+window.checkDatabase = async function(){
   console.log('🔄 Testing Supabase sync...');
   if(!window.supabase_client){
     console.error('❌ Supabase not connected');
-    return;
+    return null;
   }
   try{
     const result = await window.supabase_client.from('school_data').select('*').eq('id',1).single();
